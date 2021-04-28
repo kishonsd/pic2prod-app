@@ -6,7 +6,7 @@ const morgan = require('morgan')
 const cors = require('cors')
 
 
-mongoose.connect('mongodb://mongo:27017/pic2prod', {
+mongoose.connect('mongodb://localhost:27017/pic2prod', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true,

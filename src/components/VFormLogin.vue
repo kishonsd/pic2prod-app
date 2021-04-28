@@ -1,33 +1,56 @@
 <template>
   <v-form ref="form"
-          v-model="form">
+          v-model="form"
+          @submit.prevent="login">
     <v-text-field label="Username"
-                  type="text"></v-text-field>
+                  type="text"
+                  v-model="username"></v-text-field>
 
     <v-text-field label="Password"
-                  type="password"></v-text-field>
+                  type="password"
+                  v-model="password"></v-text-field>
 
     <v-btn :loading="loading"
            color="primary"
-           outlined>
+           outlined
+           type="submit">
       Submit
     </v-btn>
   </v-form>
 </template>
 
 <script>
+import axios from 'axios';
+import { APIURL } from '../constants';
 export default {
   name: 'VFormLogin',
 
   data: () => ({
     form: {},
-    loading: false
+    loading: false,
+    username: '',
+    password: ''
   }),
 
   methods: {
-    async handleLogin () {
-      this.loading = true
-      this.loading = false
+    async login(){
+      const username = this.username;
+      const password = this.password;
+      if(!username || !password){
+        alert("Username and Password are required");
+      }
+
+      try{
+        const { data: { token } } = await axios.post(`${APIURL}/user/login`, {
+          username,
+          password,
+        });
+        localStorage.setItem("token", token);
+        // Routing to main..
+        this.$router.push("/panel");
+      } catch (error){
+        alert("Invalid Username or Password");
+      }
     }
   }
 }

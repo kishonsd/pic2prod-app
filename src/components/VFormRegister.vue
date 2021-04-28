@@ -27,6 +27,8 @@
 
 <script>
 import server from '@/mixins/server'
+import axios from 'axios';
+import { APIURL } from '../constants';
 
 export default {
   name: 'VFormRegister',
@@ -39,11 +41,22 @@ export default {
 
   methods: {
     async handleRegister () {
-      const { email, username, password, confirmPassword } = this.form
-      await this.server('user/register', {
-        method: 'POST',
-        data: { email, username, password, confirmPassword }
-      })
+      const { email, username, password, confirmPassword } = this.form;
+      if (!username || !password || !email) {
+        alert("Email, Username and password are required");
+      }
+      try {
+        await axios.post(`${APIURL}/user/register`, {
+          username,
+          password,
+          confirmPassword,
+          email
+        });
+        alert("Registration successful");
+        this.$router.push("/");
+      } catch (error) {
+        alert("Registration failed.");
+      }
     }
   }
 }

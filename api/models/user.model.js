@@ -11,7 +11,7 @@ const mongoose = require('mongoose')
 | create   | date   | y        | `new Date()` |
 */
 
-const schema = new mongoose.Schema({
+const userSchema = new mongoose.Schema({
   username: {
     type: String,
     required: true,
@@ -39,6 +39,8 @@ const schema = new mongoose.Schema({
     default: 100
   }
 
-}, { collection: 'users' })
+}, { collection: 'Users' })
 
-module.exports = mongoose.model('user', schema)
+const User = mongoose.model('User', userSchema);
+
+module.exports = {User};
