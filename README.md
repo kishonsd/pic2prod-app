@@ -1,12 +1,41 @@
-# Pic2Prod
+# 1. Pic2Prod
 
 Post your products on multiple platforms in one click!
 
-# Stories
+- [1. Pic2Prod](#1-pic2prod)
+	- [1.1. Development](#11-development)
+		- [1.1.1. Installation](#111-installation)
+	- [1.2. Stories](#12-stories)
+		- [1.2.1. Story - Register as a new user](#121-story---register-as-a-new-user)
+		- [1.2.2. Story - Login with valid credentials](#122-story---login-with-valid-credentials)
+	- [1.3. Pages](#13-pages)
+		- [1.3.1. Page - Home](#131-page---home)
+		- [1.3.2. Page - Register](#132-page---register)
+- [2. Components](#2-components)
+		- [2.0.1. Component - VCardRegister](#201-component---vcardregister)
+		- [2.0.2. Component - VCardLogin](#202-component---vcardlogin)
+	- [2.1. API](#21-api)
+		- [2.1.1. API - session login](#211-api---session-login)
+	- [2.2. Validators](#22-validators)
+	- [2.3. Utils](#23-utils)
+		- [2.3.1. Utils - serverUtil](#231-utils---serverutil)
+		- [2.3.2. Utils - ruleUtil](#232-utils---ruleutil)
+
+## 1.1. Development
+
+Developer requirements to work on the project.
+
+### 1.1.1. Installation
+
+- [Node JS](https://nodejs.org)
+- [Docker](https://docs.docker.com/get-docker/)
+- [Docker Compose](https://docs.docker.com/compose/install/)
+
+## 1.2. Stories
 
 Pic2Prod user stories.
 
-## Story - Register as a new user
+### 1.2.1. Story - Register as a new user
 
 User is able to register by providing email, username, password and confirming his/her password in a form.
 
@@ -21,7 +50,7 @@ User is able to register by providing email, username, password and confirming h
    7. Display success toast notification.
 
 
-## Story - Login with valid credentials
+### 1.2.2. Story - Login with valid credentials
 
 User is able to login by typing username and password in login form and gets redirected to dashboard
 
@@ -35,11 +64,11 @@ User is able to login by typing username and password in login form and gets red
 
 
 
-# Pages
+## 1.3. Pages
 
 Vue pages located in `/src/views`
 
-## Page - Home
+### 1.3.1. Page - Home
 
 Home page when a user enters https://pic2prod.com
 
@@ -52,7 +81,7 @@ Home page when a user enters https://pic2prod.com
   - layout: page
 
 
-## Page - Register
+### 1.3.2. Page - Register
 
 Register page when a user enters https://pic2prod.com/register
 
@@ -65,11 +94,11 @@ Register page when a user enters https://pic2prod.com/register
   - guarded: false
   - layout: page
 
-# Components
+# 2. Components
 
 Vue components located in `/src/components/`
 
-## Component - VCardRegister
+### 2.0.1. Component - VCardRegister
 
 **Template**
 
@@ -93,7 +122,7 @@ Vue components located in `/src/components/`
 			- `@click`: `handleLogin`
 
 
-## Component - VCardLogin
+### 2.0.2. Component - VCardLogin
 
 - Start: May 03 2021
 - End: May 04 2021
@@ -143,30 +172,26 @@ Vue component for user login.
 	6. Display notification.
 	7. Loading set to false
 
-# API
+## 2.1. API
 
 Pic2Prod API routes and configuration. Located in `/api`.
 
-## API - session login
+### 2.1.1. API - session login
 
 - Method POST
 - Request body
   - email : `Validators.email`
   - password : `Validators.password`
 
-## API - session logout
-
-## API - session me
-
-# Validators
+## 2.2. Validators
 
 Pic2Prod request body validators located in `/api/validators`.
 
-# Utils
+## 2.3. Utils
 
 Vue utils located in `/src/utils/`
 
-## Utils - serverUtil
+### 2.3.1. Utils - serverUtil
 
 Requests endpoint to pic2prod API.
 
@@ -215,7 +240,7 @@ Result:
 ```
 
 
-## Utils - ruleUtil
+### 2.3.2. Utils - ruleUtil
 
 Form rules utility to validate form fields.
 
