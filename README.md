@@ -6,20 +6,20 @@ Post your products on multiple platforms in one click!
 	- [1.1. Development](#11-development)
 		- [1.1.1. Installation](#111-installation)
 	- [1.2. Stories](#12-stories)
-		- [1.2.1. Story - Register as a new user](#121-story---register-as-a-new-user)
-		- [1.2.2. Story - Login with valid credentials](#122-story---login-with-valid-credentials)
+		- [1.2.1. Register as a new user](#121-register-as-a-new-user)
+		- [1.2.2. Login with valid credentials](#122-login-with-valid-credentials)
 	- [1.3. Pages](#13-pages)
-		- [1.3.1. Page - Home](#131-page---home)
-		- [1.3.2. Page - Register](#132-page---register)
-- [2. Components](#2-components)
-		- [2.0.1. Component - VCardRegister](#201-component---vcardregister)
-		- [2.0.2. Component - VCardLogin](#202-component---vcardlogin)
+		- [1.3.1. Home](#131-home)
+		- [1.3.2. Register](#132-register)
+	- [2. Components](#2-components)
+		- [2.0.1. VCardRegister](#201-vcardregister)
+		- [2.0.2. VCardLogin](#202-vcardlogin)
 	- [2.1. API](#21-api)
-		- [2.1.1. API - session login](#211-api---session-login)
+		- [2.1.1. session login](#211-session-login)
 	- [2.2. Validators](#22-validators)
 	- [2.3. Utils](#23-utils)
-		- [2.3.1. Utils - serverUtil](#231-utils---serverutil)
-		- [2.3.2. Utils - ruleUtil](#232-utils---ruleutil)
+		- [2.3.1. serverUtil](#231-serverutil)
+		- [2.3.2. ruleUtil](#232-ruleutil)
 
 ## 1.1. Development
 
@@ -35,11 +35,11 @@ Developer requirements to work on the project.
 
 Pic2Prod user stories.
 
-### 1.2.1. Story - Register as a new user
+### 1.2.1. Register as a new user
 
 User is able to register by providing email, username, password and confirming his/her password in a form.
 
-1. Enters **Page - Register**
+1. Enters **Register**
 2. Sees **VCardRegister** in the middle of the page.
    1. Type username in form.
    2. Type email in form.
@@ -50,11 +50,11 @@ User is able to register by providing email, username, password and confirming h
    7. Display success toast notification.
 
 
-### 1.2.2. Story - Login with valid credentials
+### 1.2.2. Login with valid credentials
 
 User is able to login by typing username and password in login form and gets redirected to dashboard
 
-1. Enters **Page - Home**.
+1. Enters **Home**.
 2. Sees **VCardLogin** in the middle of the page.
    1. Type username in form.
    2. Type password in form.
@@ -68,7 +68,7 @@ User is able to login by typing username and password in login form and gets red
 
 Vue pages located in `/src/views`
 
-### 1.3.1. Page - Home
+### 1.3.1. Home
 
 Home page when a user enters https://pic2prod.com
 
@@ -81,7 +81,7 @@ Home page when a user enters https://pic2prod.com
   - layout: page
 
 
-### 1.3.2. Page - Register
+### 1.3.2. Register
 
 Register page when a user enters https://pic2prod.com/register
 
@@ -94,11 +94,11 @@ Register page when a user enters https://pic2prod.com/register
   - guarded: false
   - layout: page
 
-# 2. Components
+## 2. Components
 
 Vue components located in `/src/components/`
 
-### 2.0.1. Component - VCardRegister
+### 2.0.1. VCardRegister
 
 **Template**
 
@@ -122,7 +122,7 @@ Vue components located in `/src/components/`
 			- `@click`: `handleLogin`
 
 
-### 2.0.2. Component - VCardLogin
+### 2.0.2. VCardLogin
 
 - Start: May 03 2021
 - End: May 04 2021
@@ -163,8 +163,8 @@ Vue component for user login.
 1. `handleLogin` action when user clicks submit button
 	1. Loading set to true
 	2. Validate form.
-	3. Request to API using **Utils - serverUtil**
-		1. url: **API - session login**
+	3. Request to API using **serverUtil**
+		1. url: **session login**
 		2. method: POST
 		3. data: `this.form`
 	4. Redirect to route
@@ -176,7 +176,7 @@ Vue component for user login.
 
 Pic2Prod API routes and configuration. Located in `/api`.
 
-### 2.1.1. API - session login
+### 2.1.1. session login
 
 - Method POST
 - Request body
@@ -191,7 +191,7 @@ Pic2Prod request body validators located in `/api/validators`.
 
 Vue utils located in `/src/utils/`
 
-### 2.3.1. Utils - serverUtil
+### 2.3.1. serverUtil
 
 Requests endpoint to pic2prod API.
 
@@ -240,7 +240,7 @@ Result:
 ```
 
 
-### 2.3.2. Utils - ruleUtil
+### 2.3.2. ruleUtil
 
 Form rules utility to validate form fields.
 
