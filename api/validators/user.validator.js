@@ -10,7 +10,6 @@ const username = Joi.string()
 const password = Joi.string()
   .min(8)
   .max(30)
-  .pattern(new RegExp('/^(?=.[A-Za-z])(?=.\d)(?=.[!@#$%^&])[a-zA-Z0-9!@#$%^&*]{6,16}$/'))
   .required()
 
 const confirmPassword = Joi.ref('password')
