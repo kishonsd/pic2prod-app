@@ -1,11 +1,14 @@
 const MONGO_URI = process.env.NODE_ENV === 'production' ? process.env.MONGO_URI : 'mongodb://mongo:27017/pic2prod'
+const history = require('connect-history-api-fallback')
 const MongoStore = require('connect-mongo')
 const session = require('express-session')
+const appRoot = require('app-root-path')
 const mongoose = require('mongoose')
 const express = require('express')
 const helmet = require('helmet')
 const morgan = require('morgan')
 const cors = require('cors')
+const path = require('path')
 
 
 
@@ -48,7 +51,12 @@ function start () {
   }))
 
   // Routes
-  app.get('/', (req, res) => res.redirect('/app'))
+  const distDir = path.join(appRoot.path, 'dist')
+  app.use(express.static(distDir))
+  app.use(history({
+    index: path.join(distDir, 'index.html')
+  }))
+
   app.use('/api', [
     require('./routes/user.routes'),
   ])
