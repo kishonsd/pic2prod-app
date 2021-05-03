@@ -5,6 +5,7 @@ Post your products on multiple platforms in one click!
 - [1. Pic2Prod](#1-pic2prod)
 	- [1.1. Development](#11-development)
 		- [1.1.1. Installation](#111-installation)
+		- [1.1.2 Running](#112-running)
 	- [1.2. Deployment](#12-deployment)
 	- [1.3. Stories](#13-stories)
 		- [1.3.1. Register as a new user](#131-register-as-a-new-user)
@@ -32,6 +33,12 @@ Developer requirements to work on the project.
 - [Node JS](https://nodejs.org)
 - [Docker](https://docs.docker.com/get-docker/)
 - [Docker Compose](https://docs.docker.com/compose/install/)
+
+
+### 1.1.2 Running
+
+- Run docker-compose in root folder.
+- Run `npm run serve` in root folder.
 
 ## 1.2. Deployment
 
