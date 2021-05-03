@@ -9,8 +9,10 @@
     "build-watch": "vue-cli-service build-watch"
   },
   "dependencies": {
+    "app-root-path": "^3.0.0",
     "axios": "^0.21.1",
     "bcrypt": "^5.0.1",
+    "connect-history-api-fallback": "^1.6.0",
     "connect-mongo": "^4.4.1",
     "core-js": "^3.6.5",
     "cors": "^2.8.5",
