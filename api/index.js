@@ -24,7 +24,7 @@ function start () {
   // Security
   app.use(helmet())
   app.disable('x-powered-by')
-  app.use(cors({ origin: true }))
+  app.use(cors({ origin: true, credentials: true }))
   app.use(express.urlencoded({ extended: true }))
   app.use(express.json())
 
