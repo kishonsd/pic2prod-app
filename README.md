@@ -5,22 +5,23 @@ Post your products on multiple platforms in one click!
 - [1. Pic2Prod](#1-pic2prod)
 	- [1.1. Development](#11-development)
 		- [1.1.1. Installation](#111-installation)
-	- [1.2. Stories](#12-stories)
-		- [1.2.1. Register as a new user](#121-register-as-a-new-user)
-		- [1.2.2. Login with valid credentials](#122-login-with-valid-credentials)
-	- [1.3. Pages](#13-pages)
-		- [1.3.1. Home](#131-home)
-		- [1.3.2. Register](#132-register)
-	- [2. Components](#2-components)
-		- [2.0.1. VCardRegister](#201-vcardregister)
-		- [2.0.2. VCardLogin](#202-vcardlogin)
-	- [2.1. API](#21-api)
-		- [2.1.1. session login](#211-session-login)
-	- [2.2. Validators](#22-validators)
-	- [2.3. Utils](#23-utils)
-		- [2.3.1. serverUtil](#231-serverutil)
-	- [Mixins](#mixins)
-		- [2.3.2. ruleMixin](#232-rulemixin)
+	- [1.2. Deployment](#12-deployment)
+	- [1.3. Stories](#13-stories)
+		- [1.3.1. Register as a new user](#131-register-as-a-new-user)
+		- [1.3.2. Login with valid credentials](#132-login-with-valid-credentials)
+	- [1.4. Pages](#14-pages)
+		- [1.4.1. Home](#141-home)
+		- [1.4.2. Register](#142-register)
+	- [1.5. Components](#15-components)
+		- [1.5.1. VCardRegister](#151-vcardregister)
+		- [1.5.2. VCardLogin](#152-vcardlogin)
+	- [1.6. API](#16-api)
+		- [1.6.1. session login](#161-session-login)
+	- [1.7. Validators](#17-validators)
+	- [1.8. Utils](#18-utils)
+		- [1.8.1. serverUtil](#181-serverutil)
+	- [1.9. Mixins](#19-mixins)
+		- [1.9.1. ruleMixin](#191-rulemixin)
 
 ## 1.1. Development
 
@@ -32,11 +33,14 @@ Developer requirements to work on the project.
 - [Docker](https://docs.docker.com/get-docker/)
 - [Docker Compose](https://docs.docker.com/compose/install/)
 
-## 1.2. Stories
+## 1.2. Deployment
+
+
+## 1.3. Stories
 
 Pic2Prod user stories.
 
-### 1.2.1. Register as a new user
+### 1.3.1. Register as a new user
 
 User is able to register by providing email, username, password and confirming his/her password in a form.
 
@@ -51,7 +55,7 @@ User is able to register by providing email, username, password and confirming h
    7. Display success toast notification.
 
 
-### 1.2.2. Login with valid credentials
+### 1.3.2. Login with valid credentials
 
 User is able to login by typing username and password in login form and gets redirected to dashboard
 
@@ -65,11 +69,11 @@ User is able to login by typing username and password in login form and gets red
 
 
 
-## 1.3. Pages
+## 1.4. Pages
 
 Vue pages located in `/src/views`
 
-### 1.3.1. Home
+### 1.4.1. Home
 
 Home page when a user enters https://pic2prod.com
 
@@ -82,7 +86,7 @@ Home page when a user enters https://pic2prod.com
   - layout: page
 
 
-### 1.3.2. Register
+### 1.4.2. Register
 
 Register page when a user enters https://pic2prod.com/register
 
@@ -95,12 +99,12 @@ Register page when a user enters https://pic2prod.com/register
   - guarded: false
   - layout: page
 
-## 2. Components
+## 1.5. Components
 
 
 Vue components located in `/src/components/`
 
-### 2.0.1. VCardRegister
+### 1.5.1. VCardRegister
 
 - Start: May 03 2021
 - End: May 04 2021
@@ -162,7 +166,7 @@ Vue components located in `/src/components/`
 
 
 
-### 2.0.2. VCardLogin
+### 1.5.2. VCardLogin
 
 - Start: May 03 2021
 - End: May 04 2021
@@ -215,31 +219,32 @@ Vue component for user login.
 	6. Display notification.
 	7. Loading set to false
 
-## 2.1. API
+## 1.6. API
 
 Pic2Prod API routes and configuration. Located in `/api`.
 
-### 2.1.1. session login
+### 1.6.1. session login
 
 - Method POST
 - Request body
   - email : `Validators.email`
   - password : `Validators.password`
 
-## 2.2. Validators
+## 1.7. Validators
 
 Pic2Prod request body validators located in `/api/validators`.
 
-## 2.3. Utils
+## 1.8. Utils
 
 Vue utils located in `/src/utils/`
 
-### 2.3.1. serverUtil
-
-Requests endpoint to pic2prod API.
+### 1.8.1. serverUtil
 
 - Start: May 03 2021
 - End: May 03 2021
+
+Requests endpoint to pic2prod API.
+
 
 **Params**
 
@@ -284,15 +289,18 @@ Result:
 
 
 
-## Mixins
+## 1.9. Mixins
 
 Vue mixins located in `/src/mixins/`
 
-### 2.3.2. ruleMixin
+### 1.9.1. ruleMixin
 
-**Data**
+- Start: May 03 2021
+- End: May 03 2021
 
 Form rule mixins to validate form fields.
+
+**Data**
 
 - `username` 
   - is required
