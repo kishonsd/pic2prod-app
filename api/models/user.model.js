@@ -8,7 +8,7 @@ const mongoose = require('mongoose')
 | username | string | y        |              |
 | email    | string | y        |              |
 | password | string | y        |              |
-| create   | date   | y        | `new Date()` |
+| created   | date   | y        | `new Date()` |
 */
 
 const userSchema = new mongoose.Schema({
@@ -39,8 +39,6 @@ const userSchema = new mongoose.Schema({
     default: 100
   }
 
-}, { collection: 'Users' })
+})
 
-const User = mongoose.model('User', userSchema);
-
-module.exports = {User};
+module.exports = mongoose.model('User', userSchema)
