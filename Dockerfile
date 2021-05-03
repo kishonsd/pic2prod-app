@@ -1,8 +1,10 @@
-FROM node:15.13.0
+FROM node:lts
 WORKDIR /app
 COPY package.json package.json
+COPY . .
+ENV NODE_ENV production
 RUN npm install
 COPY . .
-EXPOSE 3000
+EXPOSE 8080
 RUN npm install -g nodemon
 CMD [ "nodemon", "index.js" ]
