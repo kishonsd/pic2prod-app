@@ -38,7 +38,7 @@ services:
       - web-root:/var/www/html
     depends_on:
       - nginx
-    command: certonly --webroot --webroot-path=/var/www/html --email kriscarilloxyz@gmail.com --agree-tos --no-eff-email --force-renewal -d pic2prod.com
+    command: certonly --webroot --webroot-path=/var/www/html --email kriscarilloxyz@gmail.com --agree-tos --no-eff-email --force-renewal -d www.pic2prod.com
       
   mongo:
     container_name: mongo-pic2prod
