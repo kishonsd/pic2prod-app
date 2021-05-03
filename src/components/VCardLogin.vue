@@ -1,31 +1,54 @@
 <template>
-  <v-card max-width="500">
-    <v-card-title>
-      <span class="primary--text">Pic</span><span class="orange--text">2</span><span class="success--text">Prod</span>
-    </v-card-title>
-    <v-card-text>
-      <VFormLogin />
-    </v-card-text>
+  <v-card-text>
+    <v-form v-model="valid" ref="form">
+      <v-text-field 
+        label="Username" 
+        type="text" 
+        :rules="rulesMixin.username"
+      ></v-text-field>
+      <v-text-field 
+        label="Password" 
+        type="password" 
+        :rules="rulesMixin.password"
+      ></v-text-field>
+    </v-form>
     <v-card-actions>
-      <router-link to="/register">Don't have an account?</router-link>
+      <v-btn 
+        color="primary" 
+        :loading="loading" 
+        :disabled="!valid"
+        @click="handleLogin"
+      >Submit</v-btn>
     </v-card-actions>
-  </v-card>
+  </v-card-text>
 </template>
 
 <script>
-import VFormLogin from '@/components/VFormLogin'
+import serverUtil from '@/utils/serverUtil'
+import rulesMixin from '../mixins/rulesMixin'
+
 export default {
   name: 'VCardLogin',
-
-  components: {
-    VFormLogin
-  },
+  
+  mixins: [rulesMixin],
 
   data: () => ({
-    form: {
-      username: '',
-      password: ''
+    form: {},
+    loading: false,
+    valid: true,
+  }),
+  methods: {
+    handleLogin() {
+      this.loading = true
+      if(this.$refs.form.validate()) {
+        serverUtil('session/login', {
+          method: 'POST',
+          data: this.form
+        })
+      }
+      this.loading = false
     }
-  })
+  }
 }
+
 </script>
