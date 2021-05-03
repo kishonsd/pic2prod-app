@@ -19,7 +19,8 @@ Post your products on multiple platforms in one click!
 	- [2.2. Validators](#22-validators)
 	- [2.3. Utils](#23-utils)
 		- [2.3.1. serverUtil](#231-serverutil)
-		- [2.3.2. ruleUtil](#232-ruleutil)
+	- [Mixins](#mixins)
+		- [2.3.2. ruleMixin](#232-rulemixin)
 
 ## 1.1. Development
 
@@ -96,30 +97,69 @@ Register page when a user enters https://pic2prod.com/register
 
 ## 2. Components
 
+
 Vue components located in `/src/components/`
 
 ### 2.0.1. VCardRegister
+
+- Start: May 03 2021
+- End: May 04 2021
+
 
 **Template**
 
 - `v-card`
 	- `v-card-text`
 		- `v-form`
-			- `v-text-field`
-				- label: Username
-				- type: username
-				- :rules `ruleUtil.username`
-    	- `v-text-field`
-			- `v-text-field`
-				- label: Password
-				- type: password
-				- :rules `ruleUtil.password`
+  		- v-model: valid
+  		- ref: form
+  			- `v-text-field`
+  				- label: Username
+  				- type: text
+  				- v-model: form.username
+  				- :rules `ruleUtil.username`
+      	- `v-text-field`
+  			- `v-text-field`
+  				- label: Password
+  				- type: password
+  				- v-model: form.password
+  				- :rules `ruleUtil.password`
+				- `v-text-field`
+  				- label: Confirm Password
+  				- type: password
+  				- v-model: form.confirmPassword
+  				- :rules `[
+							v => v == form.password || 'Password does not match'
+						]`	
 	- `v-card-actions` 
 		- `v-btn`
 			- color: primary
 			- `:loading`: `loading`
 			- `:disabled`: `!valid`
-			- `@click`: `handleLogin`
+			- `@click`: `handleRegister`
+
+**Data**
+
+| Name    | Value | Type    | Description     |
+| ------- | ----- | ------- | --------------- |
+| form    | {}    | Object  | form input      |
+| loading | false | Boolean | loading state   |
+| valid   | true  | Boolean | form validation |
+
+**Methods**
+
+1. `handleRegister` action when user clicks submit button
+	1. Loading set to true
+	2. Validate form.
+	3. Request to API using **serverUtil**
+		1. url: **session login**
+		2. method: POST
+		3. data: `this.form`
+	4. Redirect to route
+	5. Save user state to `me`.
+	6. Display notification.
+	7. Loading set to false
+
 
 
 ### 2.0.2. VCardLogin
@@ -134,15 +174,18 @@ Vue component for user login.
 
 - `v-card`
 	- `v-card-text`
-		- `v-form`
-			- `v-text-field`
-				- label: Username
-				- type: username
-				- :rules `ruleUtil.username`
-			- `v-text-field`
-				- label: Password
-				- type: password
-				- :rules `ruleUtil.password`
+		- `v-form`	
+  		- ref: form
+  		- v-model: valid
+  			- `v-text-field`
+  				- label: Username
+  				- type: username
+  				- v-model: form.username
+  				- :rules `ruleUtil.username`
+  			- `v-text-field`
+  				- label: Password
+  				- type: password
+  				- :rules `ruleUtil.password`
 	- `v-card-actions` 
 		- `v-btn`
 			- color: primary
@@ -240,17 +283,25 @@ Result:
 ```
 
 
-### 2.3.2. ruleUtil
 
-Form rules utility to validate form fields.
+## Mixins
+
+Vue mixins located in `/src/mixins/`
+
+### 2.3.2. ruleMixin
+
+**Data**
+
+Form rule mixins to validate form fields.
 
 - `username` 
+  - is required
   - is string
   - is minimum 5 characters
   - is maximum 32 characters
   - is alphanumeric
-  - is required
 - `password`
+  - is required
   - is string
   - is minimum 8 characters
   - is maximum 32 characters
@@ -258,14 +309,10 @@ Form rules utility to validate form fields.
   - has 1 lower case character
   - has 1 number digit
   - has 1 symbol character
-  - is required
 - `email`
+  - is required
   - string
   - is alphanumeric
   - has domain
   - has .com or . extension
-  - is required
   - is maximum 32 characters
-- `confirmPassword`
-  - is required
-  - is same as password
