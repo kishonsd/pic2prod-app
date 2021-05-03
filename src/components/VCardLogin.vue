@@ -15,7 +15,7 @@
     <v-card-actions>
       <v-btn 
         color="primary" 
-        :loading="loadingd" 
+        :loading="loading" 
         :disabled="!valid"
         @click="handleLogin"
       >Submit</v-btn>
