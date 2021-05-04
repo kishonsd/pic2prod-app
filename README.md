@@ -5,17 +5,22 @@ Post your products on multiple platforms in one click!
 - [1. Pic2Prod](#1-pic2prod)
 	- [1.1. Development](#11-development)
 		- [1.1.1. Installation](#111-installation)
-		- [1.1.2 Running](#112-running)
+		- [1.1.2. 1.1.2 Running](#112-112-running)
 	- [1.2. Deployment](#12-deployment)
 	- [1.3. Stories](#13-stories)
 		- [1.3.1. Register as a new user](#131-register-as-a-new-user)
 		- [1.3.2. Login with valid credentials](#132-login-with-valid-credentials)
+		- [1.3.3. Login with invalid credentials](#133-login-with-invalid-credentials)
+		- [1.3.4. Register with new credentials](#134-register-with-new-credentials)
+		- [1.3.5. Register with invalid credentials](#135-register-with-invalid-credentials)
 	- [1.4. Pages](#14-pages)
 		- [1.4.1. Home](#141-home)
 		- [1.4.2. Register](#142-register)
+		- [1.4.3. Panel](#143-panel)
 	- [1.5. Components](#15-components)
 		- [1.5.1. VCardRegister](#151-vcardregister)
 		- [1.5.2. VCardLogin](#152-vcardlogin)
+		- [1.5.3. VCardPic2Prod](#153-vcardpic2prod)
 	- [1.6. API](#16-api)
 		- [1.6.1. session login](#161-session-login)
 	- [1.7. Validators](#17-validators)
@@ -35,7 +40,7 @@ Developer requirements to work on the project.
 - [Docker Compose](https://docs.docker.com/compose/install/)
 
 
-### 1.1.2 Running
+### 1.1.2. 1.1.2 Running
 
 - Run docker-compose in root folder.
 - Run `npm run serve` in root folder.
@@ -75,6 +80,13 @@ User is able to login by typing username and password in login form and gets red
    5. Display toast notification.
 
 
+### 1.3.3. Login with invalid credentials
+
+### 1.3.4. Register with new credentials
+
+### 1.3.5. Register with invalid credentials
+
+
 
 ## 1.4. Pages
 
@@ -96,6 +108,19 @@ Home page when a user enters https://pic2prod.com
 ### 1.4.2. Register
 
 Register page when a user enters https://pic2prod.com/register
+
+**vue-router**
+
+- name: Register
+- component: Register
+- path: /register
+- meta
+  - guarded: false
+  - layout: page
+
+### 1.4.3. Panel
+
+Home page when a user is logged in https://pic2prod.com/panel
 
 **vue-router**
 
@@ -225,6 +250,83 @@ Vue component for user login.
 	5. Save user state to `me`.
 	6. Display notification.
 	7. Loading set to false
+
+### 1.5.3. VCardPic2Prod
+
+- Start: May 03 2021
+- End: May 06 2021
+
+
+Vue component for user posting products.
+
+`v-card` component with `v-form`
+
+`v-text-field` for magento https://devdocs.magento.com/guides/v2.4/rest/tutorials/configurable-product/create-simple-products.html
+
+Example magento payload
+
+```json
+{
+  "product": {
+    "sku": "MS-Champ-S",
+    "name": "Champ Tee Small",
+    "attribute_set_id": 9,
+    "price": 25,
+    "status": 1,
+    "visibility": 1,
+    "type_id": "simple",
+    "weight": "0.5",
+    "extension_attributes": {
+        "category_links": [
+            {
+                "position": 0,
+                "category_id": "11"
+            },
+            {
+                "position": 1,
+                "category_id": "12"
+            },
+            {
+                "position": 2,
+                "category_id": "16"
+            }
+        ],
+        "stock_item": {
+            "qty": "10",
+            "is_in_stock": true
+        }
+    },
+    "custom_attributes": [
+        {
+            "attribute_code": "description",
+            "value": "The Champ Tee keeps you cool and dry while you do your thing. Let everyone know who you are by adding your name on the back for only $10."
+        },
+        {
+            "attribute_code": "tax_class_id",
+            "value": "2"
+        },
+        {
+            "attribute_code": "material",
+            "value": "148"
+        },
+        {
+            "attribute_code": "pattern",
+            "value": "196"
+        },
+        {
+            "attribute_code": "color",
+            "value": "52"
+        },
+        {
+            "attribute_code": "size",
+            "value": "168"
+        }
+    ]
+  }
+}
+```
+
+
 
 ## 1.6. API
 
