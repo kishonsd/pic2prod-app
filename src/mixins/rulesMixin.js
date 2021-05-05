@@ -22,7 +22,19 @@ const mixin = Vue.mixin({
         v => !!v || 'Field is required',
         v => /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)$/.test(v) || 'Field must be valid',
         v => (v && v.length <= 32) || 'Field must have less than 32 characters',
-      ]
+      ],
+      attribute_code: [
+        v => !!v || 'Field is required',
+        v => /^[a-z0-9]+$/i.test(v) || 'Field must be alphanumeric',
+        v => (v && v.length > 5) || 'Field must be more than 5 characters',
+        v => (v && v.length <= 32) || 'Field must be less than 32 characters',
+      ],
+      value: [
+        v => !!v || 'Field is required',
+        v => /^[a-z0-9]+$/i.test(v) || 'Field must be alphanumeric',
+        v => (v && v.length > 5) || 'Field must be more than 5 characters',
+        v => (v && v.length <= 32) || 'Field must be less than 32 characters',
+      ],
     }
   })
 })
