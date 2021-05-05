@@ -21,6 +21,7 @@
                                     </div>
                                     <v-btn 
                                         small color="primary" 
+                                        :disabled="!valid"
                                         @click="handlePost"
                                     >Add Attribute</v-btn>
                                 </v-form>
