@@ -1,25 +1,53 @@
 version: "3"
 services:
-  app:
-    container_name: app-pic2prod
+  client:
+    container_name: pic2prod-client
     restart: always
-    build: ./
+    build: ./client
+    command: npm run serve
     ports:
-      - "5000:5000"
+      - "8080:8080"
     volumes:
-      - .:/app
-    links:
+      - "./client:/client"
+    networks:
+      - api-network
+    depends_on: 
+      - api
+
+  api:
+    container_name: pic2prod-api
+    restart: always
+    build: ./api
+    command: npm run serve
+    ports:
+      - "8081:8081"
+    volumes:
+      - "./api:/api"
+    networks:
+      - api-network
+      - mongo-network
+    depends_on: 
       - mongo
   
   mongo:
-    container_name: mongo-pic2prod
+    container_name: pic2prod-mongo
     image: mongo
     ports:
       - "27017:27017"
+    networks:
+      - api-network
+      - mongo-network
     volumes:
       - mongodb:/data/db
       - mongodb_config:/data/configdb
+    
       
 volumes:
   mongodb:
   mongodb_config:
+
+networks:
+  api-network:
+    driver: bridge
+  mongo-network:
+    driver: bridge

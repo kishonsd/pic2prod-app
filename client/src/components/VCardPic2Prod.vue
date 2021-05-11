@@ -52,12 +52,15 @@ export default {
         form: {},
         attrs: [],
         valid: true,
+        loading: false,
     }),
     methods: {
     handlePost() {
+      this.loading = true
       if(this.$refs.form.validate()) {
           this.attrs.push({})
       }
+      this.loading = false
     }
   }
 }
