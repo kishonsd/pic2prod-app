@@ -3,6 +3,17 @@ const UserModel = require('../models/user.model')
 const UserValidator = require('../validators/user.validator')
 const route = Router()
 
+route.get('/users', async (req, res) => {
+  try {
+    const users = await UserModel.find()
+    res.json(users)
+  }
+  catch(error) {
+    console.log(error)
+    res.sendStatus(400)
+  }
+})
+
 route.post('/user/create', async (req, res) => {
   try {
     const {
