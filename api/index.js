@@ -1,4 +1,4 @@
-const MONGO_URI = process.env.NODE_ENV === 'production' ? process.env.MONGO_URI : 'mongodb://mongo:27017/pic2prod-mongo'
+const MONGO_URI = process.env.NODE_ENV === 'production' ? process.env.MONGO_DB_URL : 'mongodb://mongo:27017/pic2prod-mongo'
 const history = require('connect-history-api-fallback')
 const MongoStore = require('connect-mongo')
 const session = require('express-session')
@@ -57,6 +57,7 @@ app.use(history({
 
 app.use('/api', [
   require('./routes/user.routes'),
+  require('./routes/session.routes'),
 ])
 
 app.listen(8081, () => console.log('[nodemon] Server listening on port 8081'))
