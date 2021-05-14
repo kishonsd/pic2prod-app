@@ -23,14 +23,28 @@ const mixin = Vue.mixin({
         v => /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)$/.test(v) || 'Field must be valid',
         v => (v && v.length <= 32) || 'Field must have less than 32 characters',
       ],
-      attribute_code: [
-        v => !!v || 'Field is required',
-        v => /^[a-z0-9]+$/i.test(v) || 'Field must be alphanumeric',
-      ],
-      value: [
-        v => !!v || 'Field is required',
-        v => /^[a-z0-9]+$/i.test(v) || 'Field must be alphanumeric',
-      ],
+      product: {
+        product_name: [
+          v => !!v || 'Field is required',
+          v => /^[a-z0-9]+$/i.test(v) || 'Field must be alphanumeric',
+        ],
+        product_barcode: [
+          v => !!v || 'Field is required',
+          v => /^[a-z0-9]+$/i.test(v) || 'Field must be alphanumeric',
+        ],
+        product_brand: [
+          v => !!v || 'Field is required',
+          v => /^[0-9]*$/i.test(v) || 'Field must be numeric',
+        ],
+        product_supplier: [
+          v => !!v || 'Field is required',
+          v => /^[0-9]*$/i.test(v) || 'Field must be numeric',
+        ],
+        product_price: [
+          v => !!v || 'Field is required',
+          v => /^[a-z0-9]+$/i.test(v) || 'Field must be alphanumeric',
+        ],
+      }
     }
   })
 })
