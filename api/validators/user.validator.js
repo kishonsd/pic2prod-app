@@ -22,8 +22,7 @@ const email = Joi.string()
 
 module.exports = {
   login: Joi.object({
-    username,
-    password
+    username
   }),
 
   register: Joi.object({
