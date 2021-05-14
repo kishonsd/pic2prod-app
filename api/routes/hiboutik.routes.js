@@ -22,7 +22,7 @@ route.post('/hiboutik/post', async (req, res) => {
         await pic2prod.save(
           { product_name, product_barcode, product_brand, product_supplier, product_price },
           validator.create,
-          model
+          PostModel
         ).then(() => res.sendStatus(201))
     } catch (error) {
     console.log(error)
