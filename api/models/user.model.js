@@ -1,3 +1,4 @@
+const bcrypt = require('bcryptjs')
 const mongoose = require('mongoose')
 
 /* 
@@ -39,6 +40,18 @@ const userSchema = new mongoose.Schema({
     default: 100
   }
 
+})
+
+userSchema.pre('save', async function (next) {
+  const user = this
+  // only hash the password if it has been modified (or is new)
+  if(!user.isModified('password')) return next()
+  // generate a salt
+  const SALT = parseInt(process.env.CRYPT_SALT)
+  const salt = bcrypt.genSaltSync(SALT)
+  // hash password
+  user.password = await bcrypt.hashSync(user.password, salt)
+  next()
 })
 
 module.exports = mongoose.model('User', userSchema)
