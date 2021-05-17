@@ -22,7 +22,7 @@ const product_price = Joi.string()
 
 
 module.exports = {
-  create: Joi.object({
+  post: Joi.object({
     product_name,
     product_barcode,
     product_brand,
