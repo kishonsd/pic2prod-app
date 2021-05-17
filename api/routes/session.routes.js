@@ -2,6 +2,7 @@ const validator = require('../validators/user.validator')
 const pic2prod = require('../utils/pic2prod')
 const userModel = require('../models/user.model')
 const express = require('express')
+const bcrypt = require('bcryptjs')
 const route = express.Router()
 
 route.post('/session/login', async (req, res) => {
@@ -14,10 +15,16 @@ route.post('/session/login', async (req, res) => {
     )
     if (!user) throw new Error('User does not exist')
 
-    if (password != user.password) throw new Error('Invalid credentials')
+    const passMatch = await bcrypt.compareSync(
+      password,
+      user.password
+    )
+
+    if (!passMatch) throw new Error('Invalid credentials')
     const payload = { username: user.username }
-    req.session.user = payload
+    req.session.username = payload
     res.send(payload)
+    console.log(req.session.username)
 
   } catch (error) {
     console.log(error)
@@ -27,8 +34,8 @@ route.post('/session/login', async (req, res) => {
 
 route.get('/session/me', async (req, res) => {
   try {
-    const { username } = req.session.user
-    const user = await pic2prod.read({ username }, validator.login, userModel)
+    const sessionUser = req.session.username
+    const user = await pic2prod.read(sessionUser, validator.login, userModel)
     res.send(user)
   } catch (error) {
     console.log(error)
