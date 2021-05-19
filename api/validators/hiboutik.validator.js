@@ -1,11 +1,9 @@
 const Joi = require('joi')
 
 const product_name = Joi.string()
-    .alphanum()
     .required()
 
 const product_barcode = Joi.string()
-    .alphanum()
     .required()
 
 const product_brand = Joi.number()
@@ -17,7 +15,6 @@ const product_supplier = Joi.number()
     .required()
 
 const product_price = Joi.string()
-    .alphanum()
     .required()
 
 
