@@ -23,14 +23,12 @@ const mixin = Vue.mixin({
         v => /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)$/.test(v) || 'Field must be valid',
         v => (v && v.length <= 32) || 'Field must have less than 32 characters',
       ],
-      product: {
+      hiboutik: {
         product_name: [
           v => !!v || 'Field is required',
-          v => /^[a-z0-9]+$/i.test(v) || 'Field must be alphanumeric',
         ],
         product_barcode: [
           v => !!v || 'Field is required',
-          v => /^[a-z0-9]+$/i.test(v) || 'Field must be alphanumeric',
         ],
         product_brand: [
           v => !!v || 'Field is required',
@@ -42,9 +40,34 @@ const mixin = Vue.mixin({
         ],
         product_price: [
           v => !!v || 'Field is required',
-          v => /^[a-z0-9]+$/i.test(v) || 'Field must be alphanumeric',
         ],
-      }
+      },
+      magento: {
+        sku: [
+          v => !!v || 'Field is required',
+        ],
+        name: [
+          v => !!v || 'Field is required',
+        ],
+        attribute_set_id: [
+          v => !!v || 'Field is required',
+          v => /^[0-9]*$/i.test(v) || 'Field must be numeric',
+        ],
+        price: [
+          v => !!v || 'Field is required',
+          v => /^[0-9]*$/i.test(v) || 'Field must be numeric',
+        ],
+        visibility: [
+          v => !!v || 'Field is required',
+          v => /^[0-9]*$/i.test(v) || 'Field must be numeric',
+        ],
+        type_id: [
+          v => !!v || 'Field is required',
+        ],
+        weight: [
+          v => !!v || 'Field is required',
+        ],
+      },
     }
   })
 })
