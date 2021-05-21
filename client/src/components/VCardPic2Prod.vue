@@ -97,7 +97,10 @@
                         </v-card>
                     </v-col>
                     <v-col cols="12" md="6">
-                        <h1>Active Combos</h1>
+                        <div>
+                            <h1>Active Combos</h1>
+                            <VButtonLogout class="float-right" />
+                        </div>
                         <v-btn 
                             color="primary"
                             :loading="loading"
@@ -127,9 +130,13 @@
 <script>
 import rulesMixin from '../mixins/rulesMixin'
 import serverUtil from '../utils/serverUtil'
+import VButtonLogout from './VButtonLogout'
 
 export default {
     name: 'VCardPic2Prod',
+    components: {
+        VButtonLogout
+    },
     mixins: [rulesMixin],
 
     data: () => ({
