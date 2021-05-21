@@ -17,7 +17,7 @@ function convert (data) {
   return form
 }
 
-route.get('/hiboutik/all', async (req, res) => {
+route.get('/pic2prod/hiboutik', async (req, res) => {
   axios({
     url: `${host}/products`,
     method: 'GET',
@@ -32,7 +32,7 @@ route.get('/hiboutik/all', async (req, res) => {
 })
   
 
-route.post('/hiboutik/post', async (req, res) => {
+route.post('/pic2prod/hiboutik', async (req, res) => {
   const product = {
     product_model: req.body.product_model,
     product_barcode: req.body.product_barcode,
@@ -51,10 +51,11 @@ route.post('/hiboutik/post', async (req, res) => {
     auth
   })
   .then((response) => {
-    res.send(response.data)
+    res.sendStatus(201)
   })
   .catch((err) => {
     console.log(err)
+    res.sendStatus(400)
   })
 })
 
