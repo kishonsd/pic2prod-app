@@ -16,8 +16,8 @@
                                     <div v-if="selectedPlatform === 'Hiboutik'">
                                         <v-text-field 
                                             label="Product Model" 
-                                            v-model="form.product_name"
-                                            :rules="rulesMixin.hiboutik.product_name"
+                                            v-model="form.product_model"
+                                            :rules="rulesMixin.hiboutik.product_model"
                                         ></v-text-field>
                                         <v-text-field 
                                             label="Product Barcode" 
@@ -106,7 +106,7 @@
                         <v-expansion-panels class="mt-5" v-for="(item,index) in items" :key="index">
                             <v-expansion-panel>
                                 <v-expansion-panel-header>
-                                    {{ selectedPlatform }}
+                                    {{ item.platform }}
                                 </v-expansion-panel-header>
                                 <v-expansion-panel-content>
                                     <code>
@@ -148,6 +148,11 @@ export default {
                     enumerable: false,
                     writable: true
                 })
+                Object.defineProperty(this.form, 'platform', {
+                    enumerable: false,
+                    writable: true
+                })
+                this.form.platform = 'Hiboutik'
                 this.form.server = '/hiboutik/post'
                 this.items.push(this.form)
                 this.form = {}
@@ -158,10 +163,15 @@ export default {
         addToMagento() {
             this.loading = true
             if(this.$refs.form.validate()) {
+                Object.defineProperty(this.form, 'platform', {
+                    enumerable: false,
+                    writable: true
+                })
                 Object.defineProperty(this.form, 'server', {
                     enumerable: false,
                     writable: true
                 })
+                this.form.platform = 'Magento'
                 this.form.server = '/magento/post'
                 this.items.push(this.form)
                 this.form = {}
