@@ -21,7 +21,7 @@ route.post('/session/login', async (req, res) => {
     )
 
     if (!passMatch) throw new Error('Invalid credentials')
-    const payload = { _id: req.session.id, username: user.username }
+    const payload = {  username: user.username }
     req.session.username = payload
     res.send(payload)
     console.log(req.session.username)
@@ -35,13 +35,8 @@ route.post('/session/login', async (req, res) => {
 route.delete('/session/logout', async (req, res) => {
   try {
     if(req.session) {
-      req.session.destroy((err) => {
-        if(err) {
-          res.sendStatus(400)
-        } else {
-          res.sendStatus(200)
-        }
-      })
+      req.session.username = null
+      res.sendStatus(200)
     }
 
   } catch(error) {
@@ -54,7 +49,7 @@ route.get('/session/me', async (req, res) => {
   try {
     const sessionUser = req.session.username
     const user = await pic2prod.read(sessionUser, validator.login, userModel)
-    res.send(user)
+    res.send({ _id: user._id, username: user.username })
   } catch (error) {
     console.log(error)
     res.sendStatus(401)
