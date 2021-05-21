@@ -21,7 +21,7 @@ route.post('/session/login', async (req, res) => {
     )
 
     if (!passMatch) throw new Error('Invalid credentials')
-    const payload = { username: user.username }
+    const payload = { _id: req.session.id, username: user.username }
     req.session.username = payload
     res.send(payload)
     console.log(req.session.username)
@@ -29,6 +29,24 @@ route.post('/session/login', async (req, res) => {
   } catch (error) {
     console.log(error)
     res.sendStatus(401)
+  }
+})
+
+route.delete('/session/logout', async (req, res) => {
+  try {
+    if(req.session) {
+      req.session.destroy((err) => {
+        if(err) {
+          res.sendStatus(400)
+        } else {
+          res.sendStatus(200)
+        }
+      })
+    }
+
+  } catch(error) {
+    console.log(error)
+    res.sendStatus(500)
   }
 })
 
