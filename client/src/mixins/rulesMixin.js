@@ -24,7 +24,7 @@ const mixin = Vue.mixin({
         v => (v && v.length <= 32) || 'Field must have less than 32 characters',
       ],
       hiboutik: {
-        product_name: [
+        product_model: [
           v => !!v || 'Field is required',
         ],
         product_barcode: [
