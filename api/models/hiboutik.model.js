@@ -5,7 +5,7 @@ const mongoose = require('mongoose')
 
 | Key               | Type   | Required | Default      |
 | --------          | ------ | -------- | ------------ |
-| product_name      | string | y        |              |
+| product_model     | string | y        |              |
 | product_barcode   | string | y        |              |
 | product_brand     | integer | y        |              |
 | product_supplier  | integer | y        |              |
@@ -14,7 +14,8 @@ const mongoose = require('mongoose')
 */
 
 const hiboutikSchema = new mongoose.Schema({
-  product_name: {
+
+  product_model: {
     type: String,
     required: true,
     index: { unique: true }
@@ -22,8 +23,7 @@ const hiboutikSchema = new mongoose.Schema({
 
   product_barcode: {
     type: String,
-    required: true,
-    index: { unique: true }
+    required: true
   },
 
   product_brand: {
@@ -33,7 +33,7 @@ const hiboutikSchema = new mongoose.Schema({
 
   product_supplier: {
     type: Number,
-    required: true
+    required: true,
   },
 
   product_price: {
@@ -41,11 +41,16 @@ const hiboutikSchema = new mongoose.Schema({
     required: true
   },
 
-  created: {
-    type: Date,
-    default: Date()
-  }
+})
 
+hiboutikSchema.method('transform', function() {
+  var obj = this.toObject()
+
+  //Rename fields
+  obj.product_id = obj._id
+  delete obj._id
+
+  return obj
 })
 
 module.exports = mongoose.model('Hiboutik', hiboutikSchema)
