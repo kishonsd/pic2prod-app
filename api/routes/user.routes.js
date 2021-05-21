@@ -10,7 +10,18 @@ route.get('/users', async (req, res) => {
   }
   catch(error) {
     console.log(error)
-    res.sendStatus(400)
+    res.sendStatus(401)
+  }
+})
+
+route.get('/users/:id', async (req, res) => {
+  try {
+    const users = await UserModel.findById(req.params.username)
+    res.json(users)
+  }
+  catch(error) {
+    console.log(error)
+    res.sendStatus(401)
   }
 })
 
