@@ -160,7 +160,7 @@ export default {
                     writable: true
                 })
                 this.form.platform = 'Hiboutik'
-                this.form.server = '/hiboutik/post'
+                this.form.server = '/pic2prod/hiboutik'
                 this.items.push(this.form)
                 this.form = {}
             }
