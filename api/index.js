@@ -59,7 +59,8 @@ app.use('/api', [
   require('./routes/user.routes'),
   require('./routes/session.routes'),
   require('./routes/hiboutik.routes'),
-  require('./routes/magento.routes')
+  require('./routes/magento.routes'),
+  require('./routes/ebay.routes')
 ])
 
 app.listen(8081, () => console.log('[nodemon] Server listening on port 8081'))
