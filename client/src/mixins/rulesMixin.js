@@ -41,6 +41,15 @@ const mixin = Vue.mixin({
         product_price: [
           v => !!v || 'Field is required',
         ],
+        host: [
+          v => !!v || 'Field is required',
+        ],
+        username: [
+          v => !!v || 'Field is required',
+        ],
+        password: [
+          v => !!v || 'Field is required',
+        ],
       },
       magento: {
         sku: [
@@ -91,9 +100,6 @@ const mixin = Vue.mixin({
         format: [
           v => !!v || 'Field is required',
         ],
-        listingDescription: [
-          v => !!v || 'Field is required',
-        ],
         availableQuantity: [
           v => !!v || 'Field is required',
           v => /^[0-9]*$/i.test(v) || 'Field must be numeric',
@@ -127,6 +133,12 @@ const mixin = Vue.mixin({
         vatPercentage: [
           v => !!v || 'Field is required',
           v => /^[0-9]*$/i.test(v) || 'Field must be numeric',
+        ],
+        host: [
+          v => !!v || 'Field is required',
+        ],
+        token: [
+          v => !!v || 'Field is required',
         ],
       },
     }
