@@ -2,8 +2,6 @@ const axios = require('axios')
 const express = require('express')
 const route = express.Router()
 const FormData = require('form-data')
-const host = process.env.EBAY_HOST
-const token = process.env.EBAY_TOKEN
 
 function convert (data) {
     const form = new FormData()
@@ -31,6 +29,8 @@ route.get('/pic2prod/ebay/inventory', async (req, res) => {
 // Create ebay inventory
 
 route.put('/pic2prod/ebay/inventory/:sku', async (req, res) => {
+    const host = req.body.host
+    const token = req.body.token
     const inventory = {
         product: {
             title: req.body.title,
@@ -66,11 +66,12 @@ route.put('/pic2prod/ebay/inventory/:sku', async (req, res) => {
 // Create an offer based on inventory SKU
 
 route.post('/pic2prod/ebay/inventory/offer', async (req, res) => {
+    const host = req.body.host
+    const token = req.body.token
     const offer = {
         sku: req.body.sku,
         marketplaceId: req.body.marketplaceId,
         format: req.body.format,
-        listingDescription: req.body.listingDescription,
         availableQuantity: req.body.availableQuantity,
         quantityLimitPerBuyer: req.body.quantityLimitPerBuyer,
         pricingSummary: {
@@ -112,6 +113,8 @@ route.post('/pic2prod/ebay/inventory/offer', async (req, res) => {
 })
 
 route.post('/pic2prod/ebay/inventory/offer/:offerId/publish', async (req, res) => {
+    const host = req.body.host
+    const token = req.body.token
     await axios({
         url: `${host}/offer/${req.params.sku}/publish`,
         method: 'POST',
