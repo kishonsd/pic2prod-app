@@ -1,4 +1,3 @@
-const PostModel = require('../models/hiboutik.model')
 const axios = require('axios')
 const express = require('express')
 const route = express.Router()
@@ -52,6 +51,7 @@ route.post('/pic2prod/hiboutik', async (req, res) => {
   })
   .then((response) => {
     res.sendStatus(201)
+    console.log(form)
   })
   .catch((err) => {
     console.log(err)
