@@ -27,7 +27,6 @@ route.post('/session/login', async (req, res) => {
     console.log(req.session.username)
 
   } catch (error) {
-    console.log(error)
     res.sendStatus(401)
   }
 })
@@ -40,7 +39,6 @@ route.delete('/session/logout', async (req, res) => {
     }
 
   } catch(error) {
-    console.log(error)
     res.sendStatus(500)
   }
 })
@@ -51,7 +49,6 @@ route.get('/session/me', async (req, res) => {
     const user = await pic2prod.read(sessionUser, validator.login, userModel)
     res.send({ _id: user._id, username: user.username })
   } catch (error) {
-    console.log(error)
     res.sendStatus(401)
   }
 })
