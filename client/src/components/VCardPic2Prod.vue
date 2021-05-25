@@ -39,6 +39,21 @@
                                             v-model="form.product_price"
                                             :rules="rulesMixin.hiboutik.product_price"
                                         ></v-text-field>
+                                        <v-text-field 
+                                            label="Host" 
+                                            v-model="form.host"
+                                            :rules="rulesMixin.hiboutik.host"
+                                        ></v-text-field>
+                                        <v-text-field 
+                                            label="Username" 
+                                            v-model="form.username"
+                                            :rules="rulesMixin.hiboutik.username"
+                                        ></v-text-field>
+                                        <v-text-field 
+                                            label="Password" 
+                                            v-model="form.password"
+                                            :rules="rulesMixin.hiboutik.password"
+                                        ></v-text-field>
                                         <v-btn 
                                         color="primary" 
                                         :disabled="!valid"
@@ -89,8 +104,108 @@
                                         @click="addToMagento"
                                         >Add</v-btn>
                                     </div>
-                                    <div v-else>
-                                        <h1>No Form to Show</h1>
+                                    <div v-else-if="selectedPlatform === 'eBay'">
+                                        <v-text-field 
+                                            label="SKU" 
+                                            v-model="ebayInventory.skuP"
+                                            :rules="rulesMixin.eBay.skuP"
+                                        ></v-text-field>
+                                        <v-text-field 
+                                            label="Title" 
+                                            v-model="ebayInventory.title"
+                                            :rules="rulesMixin.eBay.title"
+                                        ></v-text-field>
+                                        <v-text-field 
+                                            label="Description" 
+                                            v-model="ebayInventory.description"
+                                            :rules="rulesMixin.eBay.description"
+                                        ></v-text-field>
+                                        <v-text-field 
+                                            label="Condition" 
+                                            v-model="ebayInventory.condition"
+                                            :rules="rulesMixin.eBay.condition"
+                                        ></v-text-field>
+                                        <v-text-field 
+                                            label="Quantity" 
+                                            v-model.number="ebayInventory.quantity"
+                                            :rules="rulesMixin.eBay.quantity"
+                                        ></v-text-field>
+                                        <v-text-field 
+                                        label="MarketPlace" 
+                                        v-model="ebayOffer.marketplaceId"
+                                        :rules="rulesMixin.eBay.marketplaceId"
+                                        ></v-text-field>
+                                        <v-text-field 
+                                            label="Format" 
+                                            v-model="ebayOffer.format"
+                                            :rules="rulesMixin.eBay.format"
+                                        ></v-text-field>
+                                        <v-text-field 
+                                            label="Available Quantity" 
+                                            v-model.number="ebayOffer.availableQuantity"
+                                            :rules="rulesMixin.eBay.availableQuantity"
+                                        ></v-text-field>
+                                        <v-text-field 
+                                            label="Quantity Limit Per Buyer" 
+                                            v-model.number="ebayOffer.quantityLimitPerBuyer"
+                                            :rules="rulesMixin.eBay.quantityLimitPerBuyer"
+                                        ></v-text-field>
+                                        <v-text-field 
+                                            label="Price Value" 
+                                            v-model.number="ebayOffer.value"
+                                            :rules="rulesMixin.eBay.value"
+                                        ></v-text-field>
+                                        <v-text-field 
+                                            label="Price Currency" 
+                                            v-model="ebayOffer.currency"
+                                            :rules="rulesMixin.eBay.currency"
+                                        ></v-text-field>
+                                        <v-text-field 
+                                            label="Fulfillment Policy" 
+                                            v-model="ebayOffer.fulfillmentPolicyId"
+                                            :rules="rulesMixin.eBay.fulfillmentPolicyId"
+                                        ></v-text-field>
+                                        <v-text-field 
+                                            label="Payment Policy" 
+                                            v-model="ebayOffer.paymentPolicyId"
+                                            :rules="rulesMixin.eBay.paymentPolicyId"
+                                        ></v-text-field>
+                                        <v-text-field 
+                                            label="Return Policy" 
+                                            v-model="ebayOffer.returnPolicyId"
+                                            :rules="rulesMixin.eBay.returnPolicyId"
+                                        ></v-text-field>
+                                        <v-text-field 
+                                            label="Category" 
+                                            v-model="ebayOffer.categoryId"
+                                            :rules="rulesMixin.eBay.categoryId"
+                                        ></v-text-field>
+                                        <v-text-field 
+                                            label="Merchant Location" 
+                                            v-model="ebayOffer.merchantLocationKey"
+                                            :rules="rulesMixin.eBay.merchantLocationKey"
+                                        ></v-text-field>
+                                        <v-text-field 
+                                            label="Vat Percentage" 
+                                            v-model.number="ebayOffer.vatPercentage"
+                                            :rules="rulesMixin.eBay.vatPercentage"
+                                        ></v-text-field>
+                                        <v-text-field 
+                                            label="Host" 
+                                            v-model.number="ebayOffer.host"
+                                            :rules="rulesMixin.eBay.host"
+                                        ></v-text-field>
+                                        <v-text-field 
+                                            label="Token" 
+                                            v-model.number="ebayOffer.token"
+                                            :rules="rulesMixin.eBay.token"
+                                        ></v-text-field>
+                                        <v-btn 
+                                        color="primary" 
+                                        :disabled="!valid"
+                                        :loading="loading"
+                                        @click="eBayAddInventory"
+                                        >Add</v-btn>
                                     </div>
                                 </v-form>
                             </v-card-text>
@@ -143,7 +258,10 @@ export default {
         platform: ['Hiboutik', 'Magento', 'eBay'],
         selectedPlatform: 'Hiboutik',
         items: [],
+        offers: [],
         form: {},
+        ebayInventory: {},
+        ebayOffer: {},
         valid: true,
         loading: false,
     }),
@@ -186,13 +304,61 @@ export default {
             this.loading = false
         },
 
+        eBayAddInventory() {
+            this.loading = true
+            if(this.$refs.form.validate()) {
+                this.ebayOffer.sku = this.ebayInventory.skuP
+                Object.defineProperty(this.ebayInventory, 'platform', {
+                    enumerable: false,
+                    writable: true
+                })
+                Object.defineProperty(this.ebayInventory, 'skuP', {
+                    enumerable: false,
+                    writable: true
+                })
+                Object.defineProperty(this.ebayInventory, 'server', {
+                    enumerable: false,
+                    writable: true
+                })
+                Object.defineProperty(this.ebayOffer, 'platform', {
+                    enumerable: false,
+                    writable: true
+                })
+                Object.defineProperty(this.ebayOffer, 'server', {
+                    enumerable: false,
+                    writable: true
+                })
+                this.ebayInventory.platform = 'eBayInventory'
+                this.ebayOffer.platform = 'eBayOffer'
+                this.ebayInventory.host = this.ebayOffer.host
+                this.ebayInventory.token = this.ebayOffer.token
+                this.ebayInventory.server = `/pic2prod/ebay/inventory/${this.ebayOffer.sku}`
+                this.ebayOffer.server = '/pic2prod/ebay/inventory/offer'
+                this.items.push(this.ebayInventory, this.ebayOffer)
+                this.form = {}
+            }
+            this.loading = false
+        },
+
         async handlePost() {
             this.loading = true
             await this.items.map((item) => {
-                serverUtil(item.server, {
-                    method: 'POST',
-                    data: item
-                })
+                if(item.platform === 'eBayInventory') {
+                    serverUtil(item.server, {
+                        method: 'PUT',
+                        data: item
+                    })
+                } else if(item.platform === 'eBayOffer') {
+                    serverUtil(item.server, {
+                        method: 'POST',
+                        data: item
+                    })
+                } else {
+                    serverUtil(item.server, {
+                        method: 'POST',
+                        data: item
+                    })
+                }
             })
             this.loading = false
         }
