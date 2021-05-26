@@ -192,12 +192,12 @@
                                         ></v-text-field>
                                         <v-text-field 
                                             label="Host" 
-                                            v-model.number="ebayOffer.host"
+                                            v-model="ebayOffer.host"
                                             :rules="rulesMixin.eBay.host"
                                         ></v-text-field>
                                         <v-text-field 
                                             label="Token" 
-                                            v-model.number="ebayOffer.token"
+                                            v-model="ebayOffer.token"
                                             :rules="rulesMixin.eBay.token"
                                         ></v-text-field>
                                         <v-btn 
@@ -278,7 +278,7 @@ export default {
                     writable: true
                 })
                 this.form.platform = 'Hiboutik'
-                this.form.server = '/pic2prod/hiboutik'
+                this.form.server = 'pic2prod/hiboutik'
                 this.items.push(this.form)
                 this.form = {}
             }
@@ -297,7 +297,7 @@ export default {
                     writable: true
                 })
                 this.form.platform = 'Magento'
-                this.form.server = '/magento/post'
+                this.form.server = 'magento/post'
                 this.items.push(this.form)
                 this.form = {}
             }
@@ -332,8 +332,8 @@ export default {
                 this.ebayOffer.platform = 'eBayOffer'
                 this.ebayInventory.host = this.ebayOffer.host
                 this.ebayInventory.token = this.ebayOffer.token
-                this.ebayInventory.server = `/pic2prod/ebay/inventory/${this.ebayOffer.sku}`
-                this.ebayOffer.server = '/pic2prod/ebay/inventory/offer'
+                this.ebayInventory.server = `pic2prod/ebay/inventory/${this.ebayOffer.sku}`
+                this.ebayOffer.server = 'pic2prod/ebay/inventory/offer'
                 this.items.push(this.ebayInventory, this.ebayOffer)
                 this.form = {}
             }
