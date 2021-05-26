@@ -63,7 +63,7 @@ route.put('/pic2prod/ebay/inventory/:sku', async (req, res) => {
     })
 })
 
-// Create an offer based on inventory SKU
+// Create an offer based on inventory SKU and publish offer
 
 route.post('/pic2prod/ebay/inventory/offer', async (req, res) => {
     const host = req.body.host
@@ -104,28 +104,15 @@ route.post('/pic2prod/ebay/inventory/offer', async (req, res) => {
     })
     .then((response) => {
         console.log(response.data)
-        res.sendStatus(201)
-    })
-    .catch((error) => {
-        console.log(error)
-        res.sendStatus(400)
-    })
-})
-
-route.post('/pic2prod/ebay/inventory/offer/:offerId/publish', async (req, res) => {
-    const host = req.body.host
-    const token = req.body.token
-    await axios({
-        url: `${host}/offer/${req.params.sku}/publish`,
-        method: 'POST',
-        headers: {
-            'Authorization': `Bearer ${token}`,
-            'Content-Type': 'application/json',
-            'Content-Language': 'en-US'
-        },
-    })
-    .then((response) => {
-        res.sendStatus(200)
+        return axios({
+            url: `${host}/offer/${response.data.offerId}/publish`,
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json',
+                'Content-Language': 'en-US'
+            },
+        })
     })
     .catch((error) => {
         console.log(error)
