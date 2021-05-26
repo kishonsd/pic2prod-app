@@ -66,6 +66,10 @@ export default {
         method: 'POST',
         data: this.form
       })
+      .then(res => {
+        console.log(res)
+        this.$router.push('/')
+      })
       this.loading = false
     }
   }
