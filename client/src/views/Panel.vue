@@ -10,10 +10,28 @@
 
 <script>
 import VCardPic2Prod from '@/components/VCardPic2Prod'
+import serverUtil from '../utils/serverUtil'
 export default {
   name: 'Panel',
   components: {
     VCardPic2Prod
+  },
+  mounted() {
+    this.getUserData()
+  },
+  methods: {
+    getUserData() {
+      serverUtil('session/me', {
+          method: 'GET'
+      })
+      .then((response) => {
+          console.log(response)
+      })
+      .catch((error) => {
+          console.log(error)
+          this.$router.push('/')
+      })
+    },
   }
 }
 </script>
