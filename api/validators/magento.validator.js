@@ -14,6 +14,10 @@ const price = Joi.number()
     .integer()
     .required()
 
+const status = Joi.number()
+    .integer()
+    .required()
+
 const visibility = Joi.number()
     .integer()
     .required()
@@ -26,13 +30,16 @@ const weight = Joi.string()
 
 
 module.exports = {
-  post: Joi.object({
-    sku,
-    name,
-    attribute_set_id,
-    price,
-    visibility,
-    type_id,
-    weight
+  create: Joi.object({
+    product: {
+        sku,
+        name,
+        attribute_set_id,
+        price,
+        status,
+        visibility,
+        type_id,
+        weight
+    }
   })
 }
