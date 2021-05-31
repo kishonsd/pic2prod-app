@@ -1,6 +1,6 @@
 const Joi = require('joi')
 
-const product_name = Joi.string()
+const product_model = Joi.string()
     .required()
 
 const product_barcode = Joi.string()
@@ -19,8 +19,8 @@ const product_price = Joi.string()
 
 
 module.exports = {
-  post: Joi.object({
-    product_name,
+  create: Joi.object({
+    product_model,
     product_barcode,
     product_brand,
     product_supplier,
