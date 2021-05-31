@@ -17,42 +17,42 @@
                                         <v-text-field 
                                             label="Product Model" 
                                             v-model="form.product_model"
-                                            :rules="rulesMixin.hiboutik.product_model"
+                                            :rules="hiboutikMixin.product_model"
                                         ></v-text-field>
                                         <v-text-field 
                                             label="Product Barcode" 
                                             v-model="form.product_barcode"
-                                            :rules="rulesMixin.hiboutik.product_barcode"
+                                            :rules="hiboutikMixin.product_barcode"
                                         ></v-text-field>
                                         <v-text-field 
                                             label="Product Brand" 
                                             v-model="form.product_brand"
-                                            :rules="rulesMixin.hiboutik.product_brand"
+                                            :rules="hiboutikMixin.product_brand"
                                         ></v-text-field>
                                         <v-text-field 
                                             label="Product Supplier" 
                                             v-model="form.product_supplier"
-                                            :rules="rulesMixin.hiboutik.product_supplier"
+                                            :rules="hiboutikMixin.product_supplier"
                                         ></v-text-field>
                                         <v-text-field 
                                             label="Product Price" 
                                             v-model="form.product_price"
-                                            :rules="rulesMixin.hiboutik.product_price"
+                                            :rules="hiboutikMixin.product_price"
                                         ></v-text-field>
                                         <v-text-field 
                                             label="Host" 
                                             v-model="form.host"
-                                            :rules="rulesMixin.hiboutik.host"
+                                            :rules="hiboutikMixin.host"
                                         ></v-text-field>
                                         <v-text-field 
                                             label="Username" 
                                             v-model="form.username"
-                                            :rules="rulesMixin.hiboutik.username"
+                                            :rules="hiboutikMixin.username"
                                         ></v-text-field>
                                         <v-text-field 
                                             label="Password" 
                                             v-model="form.password"
-                                            :rules="rulesMixin.hiboutik.password"
+                                            :rules="hiboutikMixin.password"
                                         ></v-text-field>
                                         <v-btn 
                                         color="primary" 
@@ -65,37 +65,52 @@
                                         <v-text-field 
                                             label="Sku" 
                                             v-model="form.sku"
-                                            :rules="rulesMixin.magento.sku"
+                                            :rules="magentoMixin.sku"
                                         ></v-text-field>
                                         <v-text-field 
                                             label="Name" 
                                             v-model="form.name"
-                                            :rules="rulesMixin.magento.name"
+                                            :rules="magentoMixin.name"
                                         ></v-text-field>
                                         <v-text-field 
                                             label="Attribute Set ID" 
                                             v-model="form.attribute_set_id"
-                                            :rules="rulesMixin.magento.attribute_set_id"
+                                            :rules="magentoMixin.attribute_set_id"
                                         ></v-text-field>
                                         <v-text-field 
                                             label="Price" 
                                             v-model="form.price"
-                                            :rules="rulesMixin.magento.price"
+                                            :rules="magentoMixin.price"
+                                        ></v-text-field>
+                                        <v-text-field 
+                                            label="Status" 
+                                            v-model="form.status"
+                                            :rules="magentoMixin.status"
                                         ></v-text-field>
                                         <v-text-field 
                                             label="Visibility" 
                                             v-model="form.visibility"
-                                            :rules="rulesMixin.magento.visibility"
+                                            :rules="magentoMixin.visibility"
                                         ></v-text-field>
                                         <v-text-field 
                                             label="Type ID" 
                                             v-model="form.type_id"
-                                            :rules="rulesMixin.magento.type_id"
+                                            :rules="magentoMixin.type_id"
                                         ></v-text-field>
                                         <v-text-field 
                                             label="Weight" 
                                             v-model="form.weight"
-                                            :rules="rulesMixin.magento.weight"
+                                            :rules="magentoMixin.weight"
+                                        ></v-text-field>
+                                        <v-text-field 
+                                            label="Host" 
+                                            v-model="form.host"
+                                            :rules="magentoMixin.host"
+                                        ></v-text-field>
+                                        <v-text-field 
+                                            label="Token" 
+                                            v-model="form.token"
+                                            :rules="magentoMixin.token"
                                         ></v-text-field>
                                         <v-btn 
                                         color="primary" 
@@ -108,97 +123,97 @@
                                         <v-text-field 
                                             label="SKU" 
                                             v-model="ebayInventory.skuP"
-                                            :rules="rulesMixin.eBay.skuP"
+                                            :rules="eBayMixin.skuP"
                                         ></v-text-field>
                                         <v-text-field 
                                             label="Title" 
                                             v-model="ebayInventory.title"
-                                            :rules="rulesMixin.eBay.title"
+                                            :rules="eBayMixin.title"
                                         ></v-text-field>
                                         <v-text-field 
                                             label="Description" 
                                             v-model="ebayInventory.description"
-                                            :rules="rulesMixin.eBay.description"
+                                            :rules="eBayMixin.description"
                                         ></v-text-field>
                                         <v-text-field 
                                             label="Condition" 
                                             v-model="ebayInventory.condition"
-                                            :rules="rulesMixin.eBay.condition"
+                                            :rules="eBayMixin.condition"
                                         ></v-text-field>
                                         <v-text-field 
                                             label="Quantity" 
                                             v-model.number="ebayInventory.quantity"
-                                            :rules="rulesMixin.eBay.quantity"
+                                            :rules="eBayMixin.quantity"
                                         ></v-text-field>
                                         <v-text-field 
-                                        label="MarketPlace" 
-                                        v-model="ebayOffer.marketplaceId"
-                                        :rules="rulesMixin.eBay.marketplaceId"
+                                            label="MarketPlace" 
+                                            v-model="ebayOffer.marketplaceId"
+                                            :rules="eBayMixin.marketplaceId"
                                         ></v-text-field>
                                         <v-text-field 
                                             label="Format" 
                                             v-model="ebayOffer.format"
-                                            :rules="rulesMixin.eBay.format"
+                                            :rules="eBayMixin.format"
                                         ></v-text-field>
                                         <v-text-field 
                                             label="Available Quantity" 
                                             v-model.number="ebayOffer.availableQuantity"
-                                            :rules="rulesMixin.eBay.availableQuantity"
+                                            :rules="eBayMixin.availableQuantity"
                                         ></v-text-field>
                                         <v-text-field 
                                             label="Quantity Limit Per Buyer" 
                                             v-model.number="ebayOffer.quantityLimitPerBuyer"
-                                            :rules="rulesMixin.eBay.quantityLimitPerBuyer"
+                                            :rules="eBayMixin.quantityLimitPerBuyer"
                                         ></v-text-field>
                                         <v-text-field 
                                             label="Price Value" 
                                             v-model.number="ebayOffer.value"
-                                            :rules="rulesMixin.eBay.value"
+                                            :rules="eBayMixin.value"
                                         ></v-text-field>
                                         <v-text-field 
                                             label="Price Currency" 
                                             v-model="ebayOffer.currency"
-                                            :rules="rulesMixin.eBay.currency"
+                                            :rules="eBayMixin.currency"
                                         ></v-text-field>
                                         <v-text-field 
                                             label="Fulfillment Policy" 
                                             v-model="ebayOffer.fulfillmentPolicyId"
-                                            :rules="rulesMixin.eBay.fulfillmentPolicyId"
+                                            :rules="eBayMixin.fulfillmentPolicyId"
                                         ></v-text-field>
                                         <v-text-field 
                                             label="Payment Policy" 
                                             v-model="ebayOffer.paymentPolicyId"
-                                            :rules="rulesMixin.eBay.paymentPolicyId"
+                                            :rules="eBayMixin.paymentPolicyId"
                                         ></v-text-field>
                                         <v-text-field 
                                             label="Return Policy" 
                                             v-model="ebayOffer.returnPolicyId"
-                                            :rules="rulesMixin.eBay.returnPolicyId"
+                                            :rules="eBayMixin.returnPolicyId"
                                         ></v-text-field>
                                         <v-text-field 
                                             label="Category" 
                                             v-model="ebayOffer.categoryId"
-                                            :rules="rulesMixin.eBay.categoryId"
+                                            :rules="eBayMixin.categoryId"
                                         ></v-text-field>
                                         <v-text-field 
                                             label="Merchant Location" 
                                             v-model="ebayOffer.merchantLocationKey"
-                                            :rules="rulesMixin.eBay.merchantLocationKey"
+                                            :rules="eBayMixin.merchantLocationKey"
                                         ></v-text-field>
                                         <v-text-field 
                                             label="Vat Percentage" 
                                             v-model.number="ebayOffer.vatPercentage"
-                                            :rules="rulesMixin.eBay.vatPercentage"
+                                            :rules="eBayMixin.vatPercentage"
                                         ></v-text-field>
                                         <v-text-field 
                                             label="Host" 
                                             v-model="ebayOffer.host"
-                                            :rules="rulesMixin.eBay.host"
+                                            :rules="eBayMixin.host"
                                         ></v-text-field>
                                         <v-text-field 
                                             label="Token" 
                                             v-model="ebayOffer.token"
-                                            :rules="rulesMixin.eBay.token"
+                                            :rules="eBayMixin.token"
                                         ></v-text-field>
                                         <v-btn 
                                         color="primary" 
@@ -244,6 +259,9 @@
 
 <script>
 import rulesMixin from '../mixins/rulesMixin'
+import hiboutikMixin from '../mixins/hiboutikMixin'
+import magentoMixin from '../mixins/magentoMixin'
+import eBayMixin from '../mixins/ebayMixin'
 import serverUtil from '../utils/serverUtil'
 import VButtonLogout from './VButtonLogout'
 
@@ -252,7 +270,7 @@ export default {
     components: {
         VButtonLogout
     },
-    mixins: [rulesMixin],
+    mixins: [rulesMixin, hiboutikMixin, magentoMixin, eBayMixin],
 
     data: () => ({
         platform: ['Hiboutik', 'Magento', 'eBay'],
@@ -297,7 +315,7 @@ export default {
                     writable: true
                 })
                 this.form.platform = 'Magento'
-                this.form.server = 'magento/post'
+                this.form.server = 'pic2prod/magento'
                 this.items.push(this.form)
                 this.form = {}
             }
