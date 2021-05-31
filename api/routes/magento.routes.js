@@ -1,29 +1,44 @@
-const validator = require('../validators/magento.validator')
-const pic2prod = require('../utils/pic2prod')
-const PostModel = require('../models/magento.model')
+const axios = require('axios')
 const express = require('express')
 const route = express.Router()
+const magentoValidator = require('../validators/magento.validator')
 
-route.get('/magento/all', async (req, res) => {
-    try {
-        const items = await PostModel.find()
-        res.json(items)
-    } catch (error) {
-        console.log(error)
-        res.sendStatus(400)
-    }
-})
 
-route.post('/magento/post', async (req, res) => {
+route.post('/pic2prod/magento', async (req, res) => {
     try {
-        const { sku, name, attribute_set_id, price, visibility, type_id, weight } = req.body
-        await pic2prod.save(
-            { sku, name, attribute_set_id, price, visibility, type_id, weight },
-            validator.post,
-            PostModel
-        ).then(() => res.sendStatus(201))
+        const host = req.body.host
+        const token = req.body.token
+        
+        const item = {
+            product: {
+                sku: req.body.sku,
+                name: req.body.name,
+                attribute_set_id: req.body.attribute_set_id,
+                price: req.body.price,
+                status: req.body.status,
+                visibility: req.body.visibility,
+                type_id: req.body.type_id,
+                weight: req.body.weight
+            }
+        }
+
+        await magentoValidator.create.validateAsync(item)
+
+        await axios({
+            url: `${host}/products`,
+            method: 'POST',
+            data: item,
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json',
+                'Content-Language': 'en-US'
+            }
+        })
+        .then((response) => {
+            res.sendStatus(201)
+        })
+
     } catch(error) {
-        console.log(error)
         res.sendStatus(400)
     }
 })
