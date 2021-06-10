@@ -5,8 +5,10 @@ const route = Router()
 
 route.get('/users', async (req, res) => {
   try {
-    const users = await UserModel.find()
-    res.json(users)
+    const users = await UserModel
+      .find()
+      .sort({ created: '-1' })
+    res.send(users)
   }
   catch(error) {
     console.log(error)
@@ -53,6 +55,15 @@ route.post('/user/create', async (req, res) => {
 
   } catch (error) {
     console.log(error)
+    res.sendStatus(400)
+  }
+})
+
+route.delete('/users/:id', async (req, res) => {
+  try {
+    const removedUser = await UserModel.remove({ _id: req.params.id })
+    res.send(removedUser)
+  } catch(error) {
     res.sendStatus(400)
   }
 })
