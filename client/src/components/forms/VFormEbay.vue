@@ -25,23 +25,18 @@
             v-model.number="ebayInventory.quantity"
             :rules="eBayMixin.quantity"
         ></v-text-field>
-        <v-text-field 
-            label="MarketPlace"
-            v-model="ebayOffer.marketplaceId"
-            :rules="eBayMixin.marketplaceId"
-        ></v-text-field>
+        <v-select
+          :items="marketPlace"
+          v-model="ebayOffer.marketplaceId"
+          label="MarketPlace"
+        ></v-select>
         <v-text-field 
             label="Format"
             v-model="ebayOffer.format"
             :rules="eBayMixin.format"
         ></v-text-field>
         <v-text-field 
-            label="Available Quantity"
-            v-model.number="ebayOffer.availableQuantity"
-            :rules="eBayMixin.availableQuantity"
-        ></v-text-field>
-        <v-text-field 
-            label="Quantity Limit Per Buyer"
+            label="Quantity Per Buy"
             v-model.number="ebayOffer.quantityLimitPerBuyer"
             :rules="eBayMixin.quantityLimitPerBuyer"
         ></v-text-field>
@@ -55,31 +50,39 @@
             v-model="ebayOffer.currency"
             :rules="eBayMixin.currency"
         ></v-text-field>
-        <v-text-field 
-            label="Fulfillment Policy"
-            v-model="ebayOffer.fulfillmentPolicyId"
-            :rules="eBayMixin.fulfillmentPolicyId"
-        ></v-text-field>
-        <v-text-field 
-            label="Payment Policy"
-            v-model="ebayOffer.paymentPolicyId"
-            :rules="eBayMixin.paymentPolicyId"
-        ></v-text-field>
-        <v-text-field 
-            label="Return Policy"
-            v-model="ebayOffer.returnPolicyId"
-            :rules="eBayMixin.returnPolicyId"
-        ></v-text-field>
+        <v-select
+          :items="fPolicy"
+          v-model="ebayOffer.fullfillmentPolicyId"
+          :item-text="'name'"
+          :item-value="'id'"
+          label="Fullfillment Policy"
+        ></v-select>
+        <v-select
+          :items="pPolicy"
+          v-model="ebayOffer.paymentPolicyId"
+          :item-text="'name'"
+          :item-value="'id'"
+          label="Payment Policy"
+        ></v-select>
+        <v-select
+          :items="rPolicy"
+          v-model="ebayOffer.returnPolicyId"
+          :item-text="'name'"
+          :item-value="'id'"
+          label="Return Policy"
+        ></v-select>
         <v-text-field 
             label="Category"
             v-model="ebayOffer.categoryId"
             :rules="eBayMixin.categoryId"
         ></v-text-field>
-        <v-text-field 
-            label="Merchant Location"
-            v-model="ebayOffer.merchantLocationKey"
-            :rules="eBayMixin.merchantLocationKey"
-        ></v-text-field>
+        <v-select
+          :items="location"
+          v-model="ebayOffer.merchantLocationKey"
+          :item-text="'name'"
+          :item-value="'name'"
+          label="Merchant Location"
+        ></v-select>
         <v-text-field 
             label="Vat Percentage"
             v-model.number="ebayOffer.vatPercentage"
@@ -115,6 +118,11 @@ export default {
     data: () => ({
         ebayInventory: {},
         ebayOffer: {},
+        fPolicy: [{id: '186942543021', name: 'Free shipping'}],
+        pPolicy: [{id: '186943286021', name: 'Paypal'}],
+        rPolicy: [{id: '186943591021', name: '30d'}],
+        location: [{name: 'MONTPC - Services Informatiques'}],
+        marketPlace: ['EBAY_US'],
         valid: true,
         loading: false
     }),
