@@ -1,0 +1,47 @@
+version: "3"
+services:
+    # out
+    client:
+        container_name: pic2prod-client
+        restart: unless-stopped
+        build: ./client
+        volumes:
+            - "./client:/client"
+        networks:
+            - client-network
+        depends_on: 
+            - api
+
+    # middle 
+    api:
+        container_name: pic2prod-api
+        restart: unless-stopped
+        build: ./api
+        volumes:
+            - "./api:/api"
+        networks:
+            - client-network
+            - mongo-network
+        depends_on: 
+            - mongo
+
+    # in
+    mongo:
+        container_name: pic2prod-mongo
+        image: mongo
+        networks:
+            - mongo-network
+        volumes:
+            - mongodb:/data/db
+            - mongodb_config:/data/configdb
+
+volumes:
+    mongodb:
+    mongodb_config:
+
+networks:
+    client-network:
+        driver: bridge
+
+    mongo-network:
+        driver: bridge
