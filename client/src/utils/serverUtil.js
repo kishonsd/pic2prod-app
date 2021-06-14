@@ -16,7 +16,7 @@ async function serverUtil (path, options) {
     ...options
   })
     .then(response => {
-      if(response.data) {
+      if (response.data) {
         store.dispatch('toast/success', `${response.status} ${response.statusText}`)
         return response.data
       }
