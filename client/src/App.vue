@@ -26,7 +26,7 @@ export default {
     }).then(res => {
       if (res) {
         this.$store.commit('user/setMe', res.data)
-        if (this.$route.path === '/') this.$router.push('/panel')
+        if(this.$route.path === '/') this.$router.push('/panel')
       } else this.$route.path !== '/' ? this.$router.push('/') : false
     })
     this.loading = false
