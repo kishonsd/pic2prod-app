@@ -3,16 +3,11 @@ const offer_validator = require('../validators/ebay-offer.validator')
 const axios = require('axios')
 const express = require('express')
 const route = express.Router()
-const FormData = require('form-data')
 
-function convert (data) {
-    const form = new FormData()
-    Object.keys(data)
-      .forEach(key => form.append(key, data[key]))
-    return form
-}
-
+// Get ebay inventory
 route.get('/pic2prod/ebay/inventory', async (req, res) => {
+    const host = process.env.EBAY_HOST
+    const token = process.env.EBAY_TOKEN
     await axios({
         url: `${host}/inventory_item`,
         method: 'GET',
@@ -21,10 +16,100 @@ route.get('/pic2prod/ebay/inventory', async (req, res) => {
         }
     })
     .then((response) => {
-    res.json(response.data)
+        res.json(response.data)
     })
     .catch((err) => {
     console.log(err)
+    })
+})
+
+// Get eBay Fullfillment Policies
+route.get('/pic2prod/ebay/fullfillment_policy/:marketplaceID', async (req, res) => {
+    const token = process.env.EBAY_TOKEN
+    await axios({
+        url: `https://api.ebay.com/sell/account/v1/fulfillment_policy?marketplace_id=${req.params.marketplaceID}`,
+        method: 'GET',
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    })
+    .then((response) => {
+        res.json(response.data)
+    })
+    .catch((err) => {
+        console.log(err)
+    })
+})
+
+// Get eBay Payment Policies
+route.get('/pic2prod/ebay/payment_policy/:marketplaceID', async (req, res) => {
+    const token = process.env.EBAY_TOKEN
+    await axios({
+        url: `https://api.ebay.com/sell/account/v1/payment_policy?marketplace_id=${req.params.marketplaceID}`,
+        method: 'GET',
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    })
+    .then((response) => {
+        res.json(response.data)
+    })
+    .catch((err) => {
+        console.log(err)
+    })
+})
+
+// Get eBay Return Policies
+route.get('/pic2prod/ebay/return_policy/:marketplaceID', async (req, res) => {
+    const token = process.env.EBAY_TOKEN
+    await axios({
+        url: `https://api.ebay.com/sell/account/v1/return_policy?marketplace_id=${req.params.marketplaceID}`,
+        method: 'GET',
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    })
+    .then((response) => {
+        res.json(response.data)
+    })
+    .catch((err) => {
+        console.log(err)
+    })
+})
+
+// Get eBay Categories
+route.get('/pic2prod/ebay/categories', async (req, res) => {
+    const token = process.env.EBAY_TOKEN
+    await axios({
+        url: 'https://api.ebay.com/commerce/taxonomy/v1/category_tree/0',
+        method: 'GET',
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    })
+    .then((response) => {
+        res.json(response.data.rootCategoryNode)
+    })
+    .catch((err) => {
+        console.log(err)
+    })
+})
+
+// Get eBay Location
+route.get('/pic2prod/ebay/location', async (req, res) => {
+    const token = process.env.EBAY_TOKEN
+    await axios({
+        url: 'https://api.ebay.com/sell/inventory/v1/location/',
+        method: 'GET',
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    })
+    .then((response) => {
+        res.json(response.data.locations)
+    })
+    .catch((err) => {
+        console.log(err)
     })
 })
 
@@ -63,6 +148,7 @@ route.put('/pic2prod/ebay/inventory/:sku', async (req, res) => {
             res.sendStatus(201)
         })
     } catch(error) {
+        console.log(error)
         res.sendStatus(400)
     }
 })
@@ -76,8 +162,7 @@ route.post('/pic2prod/ebay/inventory/offer', async (req, res) => {
         const offer = {
             sku: req.body.sku,
             marketplaceId: req.body.marketplaceId,
-            format: req.body.format,
-            availableQuantity: req.body.availableQuantity,
+            format: 'FIXED_PRICE',
             quantityLimitPerBuyer: req.body.quantityLimitPerBuyer,
             pricingSummary: {
                 price: {
@@ -126,6 +211,7 @@ route.post('/pic2prod/ebay/inventory/offer', async (req, res) => {
             })
         })
     } catch (error) {
+        console.log(error)
         res.sendStatus(400)
     }
 })
