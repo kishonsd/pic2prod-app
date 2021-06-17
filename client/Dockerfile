@@ -1,6 +1,6 @@
 FROM node:15.13
 WORKDIR /client
-COPY package.json package.json
-COPY . .
+COPY package.json .
 RUN npm install
-EXPOSE 8080
+COPY . .
+EXPOSE 8080 8081
