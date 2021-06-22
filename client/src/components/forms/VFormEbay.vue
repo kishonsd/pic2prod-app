@@ -15,11 +15,11 @@
             v-model="ebayInventory.description"
             :rules="eBayMixin.description"
         ></v-text-field>
-        <v-text-field 
-            label="Condition"
-            v-model="ebayInventory.condition"
-            :rules="eBayMixin.condition"
-        ></v-text-field>
+        <v-select
+          :items="conditions"
+          v-model="ebayInventory.condition"
+          label="Condition"
+        ></v-select>
         <v-text-field 
             label="Quantity"
             v-model.number="ebayInventory.quantity"
@@ -109,6 +109,10 @@ export default {
     mixins: [eBayMixin],
 
     data: () => ({
+        conditions: ['NEW', 'NEW_OTHER', 'NEW_WITH_DEFECTS', 
+                    'CERTIFIED_REFURBISHED', 'SELLER_REFURBISHED', 
+                    'LIKE_NEW', 'USED_EXCELLENT', 'USED_VERY_GOOD', 
+                    'USED_GOOD', 'USED_ACCEPTABLE', 'FOR_PARTS_OR_NOT_WORKING'],
         currency: ['USD', 'CAD', 'GBP', 'AUD', 'EUR', 'CHF', 'CNY', 'HKD', 'PHP', 'PLN', 'SEK', 'SGD', 'TWD', 'MYR'],
         fullfillments: [],
         payments: [],
