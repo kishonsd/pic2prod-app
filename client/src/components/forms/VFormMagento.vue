@@ -94,7 +94,7 @@
             :rules="magentoMixin.token"
         ></v-text-field>
         <v-btn 
-        color="primary" 
+        color="primary"
         :disabled="!valid"
         :loading="loading"
         @click="addToMagento"
@@ -118,7 +118,8 @@ export default {
         subCateg2: {},
         subCateg3: {},
         subCateg4: {},
-
+        
+        
         form: {},
         valid: true,
         loading: false
@@ -127,7 +128,6 @@ export default {
     mounted() {
         this.categoriesGet()
     },
-    
     methods: {
         isEmpty(obj) {
             return Object.keys(obj).length === 0

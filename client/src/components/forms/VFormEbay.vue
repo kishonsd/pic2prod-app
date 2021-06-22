@@ -16,9 +16,9 @@
             :rules="eBayMixin.description"
         ></v-text-field>
         <v-select
-            :items="conditions"
-            v-model="ebayInventory.condition"
-            label="Condition"
+          :items="conditions"
+          v-model="ebayInventory.condition"
+          label="Condition"
         ></v-select>
         <v-text-field 
             label="Quantity"
