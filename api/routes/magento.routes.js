@@ -4,6 +4,24 @@ const route = express.Router()
 const magentoValidator = require('../validators/magento.validator')
 
 
+route.get('/pic2prod/magento/categories', async (req, res) => {
+    try {
+        const host = process.env.MAGENTO_HOST
+        const token = process.env.MAGENTO_TOKEN
+        
+        await axios({
+            url: `${host}/categories`,
+            method: 'GET',
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
+        .then(response => res.json(response.data.children_data))
+    } catch (err) {
+        console.log(err)
+    }
+})
+
 route.post('/pic2prod/magento', async (req, res) => {
     try {
         const host = req.body.host
