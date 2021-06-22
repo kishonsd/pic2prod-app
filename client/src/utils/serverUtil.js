@@ -10,7 +10,7 @@ import store from '@/store'
  */
 async function serverUtil (path, options) {
   return axios({
-    url: process.env.NODE_ENV === 'production' ? '/api' : 'http://localhost:8081/api/' + path,
+    url: process.env.NODE_ENV === 'production' ? '/api' : 'http://5.189.148.41:8081/api/' + path,
     method: 'GET',
     withCredentials: true,
     ...options
