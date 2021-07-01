@@ -23,11 +23,10 @@
                         </v-card>
                     </v-col>
                     <v-col cols="12" md="6">
-                        <div>
-                            <h1>Active Combos</h1>
-                            <VButtonLogout class="float-right" />
-                        </div>
+                        <h1>Active Combos</h1>
+                        <v-spacer></v-spacer>
                         <v-btn 
+                            rounded
                             color="primary"
                             :loading="loading"
                             @click="handlePost"
@@ -58,7 +57,6 @@ import VFormHiboutik from '@/components/forms/VFormHiboutik'
 import VFormMagento from '@/components/forms/VFormMagento'
 import VFormEbay from '@/components/forms/VFormEbay'
 import serverUtil from '../utils/serverUtil'
-import VButtonLogout from './VButtonLogout'
 
 export default {
     name: 'VCardPic2Prod',
@@ -66,7 +64,6 @@ export default {
         VFormHiboutik,
         VFormMagento,
         VFormEbay,
-        VButtonLogout
     },
 
     data: () => ({
