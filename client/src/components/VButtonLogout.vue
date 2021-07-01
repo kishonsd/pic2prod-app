@@ -1,10 +1,12 @@
 <template>
-    <v-btn 
-        color="secondary" 
-        :loading="loading"
-        @click="handleLogout"
-    >Logout
-    </v-btn>
+    <v-list-item
+        @click="handleLogout()"
+    >
+        <v-list-item-icon>
+            <v-icon>mdi-exit-to-app</v-icon>
+        </v-list-item-icon>
+        <v-list-item-title>Logout</v-list-item-title>
+    </v-list-item>
 </template>
 
 <script>
@@ -21,6 +23,7 @@ export default {
                 method: 'DELETE'
             })
             .then(() => {
+                alert('logging out...')
                 this.$store.commit('user/setMe', null)
                 this.$router.push('/')
             })
