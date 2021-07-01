@@ -15,6 +15,7 @@ import VCardPic2Prod from '@/components/VCardPic2Prod'
 import serverUtil from '../utils/serverUtil'
 import AppBar from '../layouts/AppBar.vue'
 import Footer from '../layouts/Footer.vue'
+
 export default {
   name: 'Panel',
   components: {
