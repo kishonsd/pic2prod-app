@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '@/views/Home'
 import Register from '@/views/Register'
 import Panel from '@/views/Panel'
+import About from '@/views/About'
 
 Vue.use(VueRouter)
 
@@ -23,6 +24,15 @@ const routes = [
     path: '/panel',
     name: 'Panel',
     component: Panel,
+    meta: {
+      guarded: true
+    }
+  },
+
+  {
+    path: '/about',
+    name: 'About',
+    component: About,
     meta: {
       guarded: true
     }
