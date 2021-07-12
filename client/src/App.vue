@@ -52,6 +52,9 @@ export default {
     //
   }),
 
+    computeLayout () {
+      return this.$route.meta.layout ? this.$route.meta.layout + '-layout' : 'page-layout'
+    }
   mounted () {
     this.instance = new Loadr(document.querySelector('#loading-caption'))
     this.instance.start()
