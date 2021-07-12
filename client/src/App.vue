@@ -51,6 +51,10 @@ export default {
   data: () => ({
     //
   }),
+    async handleSignedin (user) {
+      this.$store.commit('user/setMe', user)
+      await this.$store.dispatch('products/loadList')
+    },
     handleSignedout () {
       this.$store.commit('user/setMe', false)
       if (this.$route.meta.guarded) this.$router.push('/')
