@@ -51,6 +51,18 @@ export default {
   data: () => ({
     //
   }),
+
+  mounted () {
+    this.instance = new Loadr(document.querySelector('#loading-caption'))
+    this.instance.start()
+
+    firebase.auth().onAuthStateChanged(async user => {
+      this.loading = true
+      if (user) await this.handleSignedin(user)
+      else this.handleSignedout()
+      this.loading = false
+    })
+  },
     async handleSignedin (user) {
       this.$store.commit('user/setMe', user)
       await this.$store.dispatch('products/loadList')
