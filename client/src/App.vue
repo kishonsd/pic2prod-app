@@ -51,5 +51,8 @@ export default {
   data: () => ({
     //
   }),
-};
+    handleSignedout () {
+      this.$store.commit('user/setMe', false)
+      if (this.$route.meta.guarded) this.$router.push('/')
+    }
 </script>
