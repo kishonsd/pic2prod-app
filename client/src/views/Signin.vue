@@ -21,17 +21,20 @@
               </v-form>
             </v-card-text>
             <v-card-actions>
-              <v-btn block
+              <v-btn to="/post"
+                     :loading="loading"
+                     block
                      rounded
                      class="pa-5"
                      outlined
-                     dark
-                     to="/post">
+                     dark>
                 Sign in
               </v-btn>
             </v-card-actions>
             <v-card-actions>
-              <v-btn block
+              <v-btn @click="handleSigninWithGoogle"
+                     :loading="loading"
+                     block
                      rounded
                      color="success"
                      class="pa-5">
@@ -39,7 +42,9 @@
               </v-btn>
             </v-card-actions>
             <v-card-actions>
-              <v-btn block
+              <v-btn to="/signup"
+                     :loading="loading"
+                     block
                      rounded
                      class="pa-5"
                      color="warning"
@@ -55,8 +60,24 @@
 </template>
 
 <script>
+import firebase from 'firebase'
 export default {
+  data: () => ({
+    loading: false
+  }),
 
+  methods: {
+    async handleSigninWithGoogle () {
+      this.loading = true
+      const provider = new firebase.auth.GoogleAuthProvider()
+      await firebase.auth()
+        .signInWithPopup(provider)
+        .then(res => this.$store.commit('user/setMe', res.user))
+        .catch(err => alert(err.message))
+      this.loading = false
+
+    }
+  }
 }
 </script>
 
