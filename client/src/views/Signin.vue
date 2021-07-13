@@ -12,17 +12,23 @@
               <v-img src="@/assets/App Sign in .png"></v-img>
 
               <v-form>
-                <v-form>
-                  <v-text-field label="Username"
-                                type="text" />
-                  <v-text-field label="Password"
+                <v-form v-model="valid"
+                        ref="form">
+                  <v-text-field v-model="email"
+                                :rules="formRule.email"
+                                label="Email"
+                                type="email" />
+                  <v-text-field v-model="password"
+                                :rules="formRule.password"
+                                label="Password"
                                 type="password" />
                 </v-form>
               </v-form>
             </v-card-text>
             <v-card-actions>
-              <v-btn to="/post"
+              <v-btn @click="handleSignin"
                      :loading="loading"
+                     :disabled="!valid"
                      block
                      rounded
                      class="pa-5"
@@ -60,10 +66,15 @@
 </template>
 
 <script>
+import formRule from '@/utilities/formRule'
 import firebase from 'firebase'
 export default {
   data: () => ({
-    loading: false
+    formRule: formRule,
+    loading: false,
+    email: '',
+    password: '',
+    valid: true
   }),
 
   methods: {
@@ -76,6 +87,15 @@ export default {
         .catch(err => alert(err.message))
       this.loading = false
 
+    },
+
+    async handleSignin () {
+      this.loading = true
+      if (this.$refs.form.validate()) {
+        await firebase.auth().signInWithEmailAndPassword(this.email, this.password)
+          .catch(err => alert(err.message))
+      }
+      this.loading = false
     }
   }
 }
