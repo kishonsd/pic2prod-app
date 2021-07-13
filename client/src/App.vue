@@ -80,7 +80,13 @@ export default {
   methods: {
     async handleSignedin (user) {
       this.$store.commit('user/setMe', user)
-      await this.$store.dispatch('products/loadList')
+      await this.$store.dispatch('products/loadItems')
+      await this.$store.dispatch('store/loadItems')
+      if (
+        this.$route.path === '/' ||
+        this.$route.path === '/signin' ||
+        this.$route.path === '/signup'
+      ) this.$router.push('/post')
     },
     handleSignedout () {
       this.$store.commit('user/setMe', false)
