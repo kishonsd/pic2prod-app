@@ -3,7 +3,7 @@
     <v-container>
       <v-row>
         <v-col cols="12">
-          <v-post-manual-add />
+          <v-post-add />
         </v-col>
       </v-row>
     </v-container>
@@ -11,10 +11,10 @@
 </template>
 
 <script>
-import VPostManualAdd from '@/components/VPostManualAdd'
+import VPostAdd from '@/components/VPostAdd'
 export default {
   components: {
-    VPostManualAdd
+    VPostAdd
   }
 }
 </script>

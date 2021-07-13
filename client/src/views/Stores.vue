@@ -14,13 +14,7 @@
               </h1>
             </v-card-text>
             <v-card-actions class="mt-5">
-              <v-btn color="success"
-                     rounded
-                     x-large
-                     class="pa-5"
-                     to="/signin">
-                Add Product
-              </v-btn>
+              <v-store-add />
             </v-card-actions>
           </v-card>
         </v-col>
@@ -30,8 +24,13 @@
 </template>
 
 <script>
-export default {
+import VStoreAdd from '@/components/VStoreAdd'
 
+export default {
+  name: 'Stores',
+  components: {
+    VStoreAdd
+  }
 }
 </script>
 
