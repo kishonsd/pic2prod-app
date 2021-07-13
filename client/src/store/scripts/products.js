@@ -1,25 +1,25 @@
 import firebase from 'firebase'
 
 const state = {
-    list: []
+    items: []
 }
 
 
 const mutations = {
-    setList (state, payload) { state.list = payload }
+    setItems (state, payload) { state.items = payload }
 }
 
 const actions = {
-    async loadList ({ rootState, commit }) {
+    async loadItems ({ rootState, commit }) {
         const uid = rootState.user.me.uid
-        const list = await firebase.database()
+        const items = await firebase.database()
             .ref(`products/${uid}`)
             .once('value')
             .then(snapshot => snapshot.val())
 
         const products = []
-        for (let key in list) products.push(list[key])
-        commit('setList', products)
+        for (let key in items) products.push({ ...items[key], key })
+        commit('setItems', products)
     }
 }
 
