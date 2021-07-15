@@ -47,6 +47,7 @@
 
 <script>
 import { mapState } from 'vuex'
+import firebase from 'firebase'
 import VProductAdd from '@/components/VProductAdd'
 import VProductEdit from '@/components/VProductEdit'
 export default {
@@ -75,11 +76,21 @@ export default {
   },
 
   computed: {
-    ...mapState('products', ['items'])
+    ...mapState('products', ['items']),
+    ...mapState('user', ['me'])
   },
 
   methods: {
-    handleDelete () { }
+    async handleDelete (item) {
+      this.loading = true
+
+      await firebase.database()
+        .ref(`products/${this.me.uid}/${item.key}`)
+        .remove()
+
+      await this.$store.dispatch('products/loadItems')
+      this.loading = false
+    }
   }
 
 }
