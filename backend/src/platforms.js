@@ -11,8 +11,8 @@ async function Hiboutik (credentials, product, meta) {
     }
 
     const form = new FormData()
-    Object.keys(meta).forEach(k => form.append(k, meta[k]))
-    Object.keys(product_).filter(k => !Object.keys(meta).includes(k)).forEach(k => form.append(k, product_[k]))
+    if (meta) Object.keys(meta).forEach(k => form.append(k, meta[k]))
+    Object.keys(product_).filter(k => meta ? !Object.keys(meta).includes(k) : k).forEach(k => form.append(k, product_[k]))
 
     return axios({
         url: `${credentials.domain}/api/products`,
