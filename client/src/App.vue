@@ -81,7 +81,7 @@ export default {
     async handleSignedin (user) {
       this.$store.commit('user/setMe', user)
       await this.$store.dispatch('products/loadItems')
-      await this.$store.dispatch('store/loadItems')
+      await this.$store.dispatch('stores/loadItems')
       if (
         this.$route.path === '/' ||
         this.$route.path === '/signin' ||
