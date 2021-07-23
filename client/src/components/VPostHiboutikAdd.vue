@@ -1,6 +1,7 @@
 <template>
   <div class="post-hiboutik-add">
-    <v-select v-model="selected"
+    <v-select label="Fields"
+              v-model="selected"
               :items="fields"
               multiple
               :rules="formRules.required"></v-select>
