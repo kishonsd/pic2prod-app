@@ -5,6 +5,11 @@
               :items="fields"
               multiple
               :rules="formRules.required"></v-select>
+    <v-text-field v-model="meta[field]"
+                  :label="field"
+                  v-for="field in selected"
+                  :key="field" />
+
   </div>
 </template>
 
@@ -16,6 +21,7 @@ export default {
   mixins: [formRules],
   data: () => ({
     selected: [],
+    meta: {},
     fields: [
       "sku",
       "name",
