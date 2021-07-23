@@ -31,11 +31,20 @@
         </v-toolbar>
 
         <v-card-title>
-          <v-img src="@/assets/Online shopping.png"></v-img>
+
+          <v-avatar v-if="computeProductImageUrl"
+                    size="248"
+                    class="mb-5 d-block mx-auto">
+            <v-img :src="computeProductImageUrl" />
+          </v-avatar>
+          <v-img v-else
+                 src="@/assets/Online shopping.png" />
+
           <h1 class="display-1 font-weight-bold white--text">
             Product
           </h1>
         </v-card-title>
+
         <v-card-text>
           <v-form v-model="valid">
             <VProductFields :form="product"
@@ -74,14 +83,24 @@ export default {
     product: {},
     valid: true,
     loading: false,
-    dialog: false,
+    dialog: true,
     file: {}
   }),
 
   computed: {
     ...mapState([
       'user'
-    ])
+    ]),
+
+    computeProductImageUrl () {
+      return this.file.obj ? URL.createObjectURL(this.file.obj) : false
+    }
+  },
+
+  watch: {
+    file (v) {
+      console.log(v)
+    }
   },
 
   methods: {
