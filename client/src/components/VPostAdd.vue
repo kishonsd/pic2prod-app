@@ -17,7 +17,7 @@
                   :items="products.items"
                   item-text="name"
                   item-value="key"
-                  :rules="formRule.required" />
+                  :rules="formRules.required" />
 
         <v-select v-model="post.stores"
                   label="Stores"
@@ -25,7 +25,7 @@
                   item-text="name"
                   return-object
                   multiple
-                  :rules="formRule.required" />
+                  :rules="formRules.required" />
       </v-form>
     </v-card-text>
 
@@ -64,18 +64,21 @@
 <script>
 import { mapState } from 'vuex'
 import firebase from 'firebase'
-import formRule from '@/utilities/formRule'
+import formRules from '@/mixins/formRules'
 import VPostHiboutikAdd from '@/components/VPostHiboutikAdd'
-
+import VPostMagentoAdd from '@/components/VPostMagentoAdd'
 export default {
   name: 'VPostAdd',
 
+
   components: {
-    VPostHiboutikAdd
+    VPostHiboutikAdd,
+    VPostMagentoAdd
   },
 
+  mixins: [formRules],
+
   data: () => ({
-    formRule,
     post: {},
     valid: true,
     loading: false

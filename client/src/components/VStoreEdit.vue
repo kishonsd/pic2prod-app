@@ -44,14 +44,14 @@
             <v-text-field v-model="storeMeta.name"
                           label="Name"
                           type="text"
-                          :rules="formRule.required" />
+                          :rules="formRules.required" />
 
             <v-select label="Select platform"
                       v-model="platform"
                       :items="platforms"
                       item-text="text"
                       item-value="value"
-                      :rules="formRule.required"></v-select>
+                      :rules="formRules.required"></v-select>
 
             <component :is="platform"
                        :credentials="credentials" />
@@ -77,7 +77,7 @@
 <script>
 import { mapState } from 'vuex'
 import firebase from 'firebase'
-import formRule from '@/utilities/formRule'
+import formRules from '@/mixins/formRules'
 import VStoreHiboutikAdd from '@/components/VStoreHiboutikAdd'
 export default {
   name: 'VStoreAdd',
@@ -93,7 +93,7 @@ export default {
   },
 
   data: () => ({
-    formRule,
+    formRules,
     dialog: false,
     valid: true,
     platform: false,
