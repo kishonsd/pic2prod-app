@@ -11,7 +11,8 @@
       </h1>
     </v-card-title>
     <v-card-text>
-      <v-form>
+      <v-form v-model="valid"
+              ref="form">
         <v-select v-model="post.productId"
                   label="Product"
                   :items="products.items"
