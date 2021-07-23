@@ -78,10 +78,12 @@ import { mapState } from 'vuex'
 import firebase from 'firebase'
 import formRules from '@/mixins/formRules'
 import VStoreHiboutikAdd from '@/components/VStoreHiboutikAdd'
+import VStoreMagentoAdd from '@/components/VStoreMagentoAdd'
 export default {
   name: 'VStoreAdd',
   components: {
-    VStoreHiboutikAdd
+    VStoreHiboutikAdd,
+    VStoreMagentoAdd
   },
 
   data: () => ({
@@ -90,7 +92,8 @@ export default {
     valid: true,
     platform: false,
     platforms: [
-      { text: 'Hiboutik', value: VStoreHiboutikAdd }
+      { text: 'Hiboutik', value: VStoreHiboutikAdd },
+      { text: 'Magento', value: VStoreMagentoAdd }
     ],
     credentials: {},
     loading: false,
