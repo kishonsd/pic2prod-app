@@ -83,7 +83,7 @@ export default {
     product: {},
     valid: true,
     loading: false,
-    dialog: true,
+    dialog: false,
     file: {}
   }),
 
