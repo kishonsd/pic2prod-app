@@ -1,7 +1,6 @@
 <template>
   <div class="product-fields">
     <v-file-input v-model="file.obj"
-                  :rules="formRules.required"
                   label="Image"
                   accept="image/*" />
 
