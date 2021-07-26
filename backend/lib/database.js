@@ -1,3 +1,14 @@
+const admin = require('firebase-admin')
+
+admin.initializeApp({
+    credential: admin.credential.cert(require("../constants/serviceAccount.json")),
+    databaseURL: "https://pic2prod-17012.firebaseio.com"
+})
+
+
+const db = admin.database()
+const logger = require('./logger')('database')
+
 async function postsGet () {
     const ref = 'post'
     logger.info(`posts.get => ${ref}`)
@@ -25,3 +36,16 @@ async function productGet (userId, productId) {
         .then(snapshot => snapshot.val())
 }
 
+module.exports = {
+    posts: {
+        get: postsGet
+    },
+
+    post: {
+        set: postSet
+    },
+
+    product: {
+        get: productGet
+    }
+}
