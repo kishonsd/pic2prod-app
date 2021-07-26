@@ -1,29 +1,28 @@
 <template>
   <div class="product-fields">
     <v-file-input v-model="file.obj"
-                  :rules="formRule.required"
                   label="Image"
                   accept="image/*" />
 
     <v-text-field v-model="form.name"
-                  :rules="formRule.required"
+                  :rules="formRules.required"
                   label="Name"
                   prepend-icon="mdi-basket" />
 
     <v-text-field v-model="form.price"
-                  :rules="formRule.required"
+                  :rules="formRules.required"
                   label="Price"
                   prepend-icon="mdi-cash" />
 
     <v-textarea v-model="form.description"
-                :rules="formRule.required"
+                :rules="formRules.required"
                 label="Description"
                 prepend-icon="mdi-text" />
   </div>
 </template>
 
 <script>
-import formRule from '@/utilities/formRule'
+import formRules from '@/mixins/formRules'
 
 export default {
   name: 'VProductFields',
@@ -38,10 +37,7 @@ export default {
       default: () => new Object()
     }
   },
-
-  data: () => ({
-    formRule: formRule
-  })
+  mixins: [formRules]
 }
 </script>
 

@@ -29,11 +29,19 @@
             <v-icon>mdi-close</v-icon>
           </v-btn>
         </v-toolbar>
-
-        <v-avatar size="128"
-                  class="mx-auto text-center inline-block">
+        <v-dialog v-model="dialogImage"
+                  max-width="800">
           <v-img :src="product.image"></v-img>
-        </v-avatar>
+        </v-dialog>
+        <v-card @click="dialogImage = true"
+                shaped
+                hover
+                flat
+                color="transparent">
+          <v-card-text>
+            <v-img :src="product.image"></v-img>
+          </v-card-text>
+        </v-card>
         <v-card-title>
           <h1 class="display-1 font-weight-bold white--text">
             Edit Product
@@ -84,6 +92,7 @@ export default {
     valid: true,
     loading: false,
     dialog: false,
+    dialogImage: false,
     file: {}
   }),
 

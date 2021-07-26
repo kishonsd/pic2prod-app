@@ -95,3 +95,10 @@ export default {
   }
 }
 </script>
+
+
+<style>
+.body {
+  background: #673ab7 !important;
+}
+</style>

@@ -1,5 +1,5 @@
 const cron = require('node-cron')
-const main = require('./src/main')
+const main = require('./lib/bots')
 
 cron.schedule('* * * * *', () => {
     main()

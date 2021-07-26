@@ -15,11 +15,11 @@
                 <v-form v-model="valid"
                         ref="form">
                   <v-text-field v-model="email"
-                                :rules="formRule.email"
+                                :rules="formRules.email"
                                 label="Email"
                                 type="email" />
                   <v-text-field v-model="password"
-                                :rules="formRule.password"
+                                :rules="formRules.password"
                                 label="Password"
                                 type="password" />
                 </v-form>
@@ -66,11 +66,11 @@
 </template>
 
 <script>
-import formRule from '@/utilities/formRule'
+import formRules from '@/mixins/formRules'
 import firebase from 'firebase'
 export default {
+  mixins: [formRules],
   data: () => ({
-    formRule: formRule,
     loading: false,
     email: '',
     password: '',

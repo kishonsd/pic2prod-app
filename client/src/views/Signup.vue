@@ -15,18 +15,18 @@
                 <v-text-field v-model="user.email"
                               label="Email"
                               type="email"
-                              :rules="formRule.email" />
+                              :rules="formRules.email" />
 
                 <v-text-field v-model="user.password"
                               label="Password"
                               type="password"
-                              :rules="formRule.password" />
+                              :rules="formRules.password" />
 
                 <v-text-field v-model="confirmPassword"
                               label="Confirm password"
                               type="password"
                               :rules="[
-                                ...formRule.password,
+                                ...formRules.password,
                                 v => v === user.password || 'Password does not match'
                               ]" />
               </v-form>
@@ -65,7 +65,7 @@
 
 <script>
 import firebase from 'firebase'
-import formRule from '@/utilities/formRule'
+import formRules from '@/mixins/formRules'
 
 export default {
   name: 'Signup',
@@ -79,7 +79,7 @@ export default {
 
     valid: true,
     loading: false,
-    formRule: formRule,
+    formRules: formRules,
     confirmPassword: ''
   }),
 

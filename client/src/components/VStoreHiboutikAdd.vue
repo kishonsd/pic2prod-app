@@ -2,21 +2,21 @@
   <div class="fields">
     <v-text-field label="Domain"
                   v-model="credentials.domain"
-                  :rules="formRule.required" />
+                  :rules="formRules.required" />
 
     <v-text-field label="Username"
                   v-model="credentials.username"
-                  :rules="formRule.required" />
+                  :rules="formRules.required" />
 
     <v-text-field label="Password"
                   v-model="credentials.password"
-                  :rules="formRule.required" />
+                  :rules="formRules.required" />
   </div>
 </template>
 
 <script>
 
-import formRule from '@/utilities/formRule'
+import formRules from '@/mixins/formRules'
 export default {
   name: 'VStoreHiboutikFields',
   props: {
@@ -27,7 +27,7 @@ export default {
   },
 
   data: () => ({
-    formRule
+    formRules
   })
 }
 </script>

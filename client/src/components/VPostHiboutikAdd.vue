@@ -1,9 +1,10 @@
 <template>
   <div class="post-hiboutik-add">
-    <v-select v-model="selected"
+    <v-select label="Fields"
+              v-model="selected"
               :items="fields"
               multiple
-              :rules="formRule.required"></v-select>
+              :rules="formRules.required"></v-select>
 
     <v-text-field v-model="meta[field]"
                   :label="field"
@@ -13,7 +14,7 @@
 </template>
 
 <script>
-import formRule from '@/utilities/formRule'
+import formRules from '@/mixins/formRules'
 export default {
   name: 'VPostHiboutikAdd',
   props: {
@@ -23,7 +24,7 @@ export default {
   },
   data: () => ({
     meta: {},
-    formRule,
+    formRules,
     selected: [],
     fields: [
       "product_model",
