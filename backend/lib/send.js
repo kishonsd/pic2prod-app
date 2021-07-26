@@ -1,3 +1,15 @@
+const axios = require('axios')
+const FormData = require('form-data')
+const download = require('./download')
+const logger = require('./logger')('send')
+
+class Send {
+    constructor(credentials, product, meta) {
+        this.credentials = credentials
+        this.product = product
+        this.meta = meta
+    }
+
     async hiboutik () {
         logger.info('send hiboutik =>', this.product.name)
         // post product
@@ -76,3 +88,7 @@
         }).then(response => [response.data.id, false])
             .catch(err => [false, err])
     }
+}
+
+
+module.exports = Send
