@@ -15,3 +15,13 @@ async function postSet (userId, postId, stores) {
         .set(stores)
 
 }
+
+async function productGet (userId, productId) {
+    const ref = `products/${userId}/${productId}`
+    logger.info(`product.get => ${ref}`)
+    return db
+        .ref(ref)
+        .once('value')
+        .then(snapshot => snapshot.val())
+}
+
