@@ -4,6 +4,7 @@
     "cron": "node cron.js"
   },
   "dependencies": {
+    "app-root-path": "^3.0.0",
     "axios": "^0.21.1",
     "firebase-admin": "^9.10.0",
     "form-data": "^4.0.0",
