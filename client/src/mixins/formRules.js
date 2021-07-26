@@ -18,6 +18,10 @@ export default {
 
             required: [
                 v => !!v || 'Field is required',
+            ],
+
+            selectRequired: [
+                v => !!v.length || 'Field is required'
             ]
         }
     })
