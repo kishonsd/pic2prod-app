@@ -1,2 +1,1 @@
-require('./src/main')()
-
+require('./lib/bot').start()
