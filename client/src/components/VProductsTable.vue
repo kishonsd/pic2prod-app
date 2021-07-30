@@ -18,7 +18,8 @@
       <v-data-table :loading="loading"
                     :headers="headers"
                     :items="items"
-                    :search="search">
+                    :search="search"
+                    @click:row="handleRowClick">
 
         <template v-slot:[`item.image`]="{ item }">
           <v-avatar size="36"
@@ -90,6 +91,10 @@ export default {
 
       await this.$store.dispatch('products/loadItems')
       this.loading = false
+    },
+
+    handleRowClick (item) {
+      document.getElementById(item.key).click()
     }
   }
 

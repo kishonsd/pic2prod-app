@@ -9,7 +9,8 @@
              text
              class="pa-5"
              v-bind="attrs"
-             v-on="on">
+             v-on="on"
+             :id="product.key">
         <slot />
       </v-btn>
     </template>
