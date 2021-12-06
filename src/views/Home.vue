@@ -159,15 +159,6 @@
 				</ul>
 			</v-col>
 		</v-row>
-
-		<v-row style="clear: both" class="section">
-			<v-col>
-				<h1 class="display-2 font-weight-bold mb-5">Simple Pricing</h1>
-
-				<v-data-table-simple> </v-data-table-simple>
-			</v-col>
-		</v-row>
-	</v-container>
 </template>
 
 <script>
