@@ -1,13 +1,13 @@
 <template>
-	<VFormProduct />
+	<VBtnSignup.vue />
 </template>
 
 <script>
-import VFormProduct from "@/components/VFormProduct";
+import VBtnSignup from "@/components/VBtnSignup";
 export default {
 	name: "Kishonsd",
 	components: {
-		VFormProduct,
+		VBtnSignup,
 	},
 };
 </script>

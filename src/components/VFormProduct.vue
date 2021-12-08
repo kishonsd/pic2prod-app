@@ -3,8 +3,9 @@
      <p class="font-weight-bold">Recipe Name</p>
      <p class="text-left">Name your recipe and choose the URL you'd like to scrape.</p>
 
-  <v-form>
-    <v-container>
+ <v-card>
+   <v-form>
+    <v-container>     
         <v-row>
            <v-col
               cols="12" 
@@ -17,8 +18,7 @@
               outlined
             ></v-text-field>
              </v-col>
-             </v-form>
-
+             
              <v-col
               cols="12"
               sm="6"
@@ -29,12 +29,11 @@
               persistent-hint
               outlined
               >
-           
-           </v-text-field>
-
-          </v-row>
-        </v-card>
-    </v-container>
-  </v-form>
+              </v-text-field>              
+           </v-col>
+         </v-row>
+       </v-container>
+     </v-form>
+   </v-card>
   </div>
 </template>

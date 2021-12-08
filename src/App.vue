@@ -1,6 +1,6 @@
 <template>
 	<v-app>
-		<VAppBar />
+		<VFormProduct />
 		<v-main>
 			<router-view />
 		</v-main>
@@ -8,12 +8,11 @@
 </template>
 
 <script>
-import VAppBar from "@/components/VAppBar";
-
+import VFormProduct from "@/components/VFormProduct";
 export default {
-	name: "App",
+	name: "FormProduct",
 	components: {
-		VAppBar,
+		VFormProduct,
 	},
 };
 </script>
