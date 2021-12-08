@@ -5,11 +5,10 @@
 
   <v-form>
     <v-container>
-        <v-card>
-          <v-row>
+        <v-row>
            <v-col
               cols="12" 
-              sm="6"
+              md="4"
               >
               <v-text-field
               label="e.g. Yelp store names"
@@ -18,6 +17,7 @@
               outlined
             ></v-text-field>
              </v-col>
+             </v-form>
 
              <v-col
               cols="12"
