@@ -1,6 +1,5 @@
 <template>
 	<v-app>
-		<VFormProduct />
 		<v-main>
 			<router-view />
 		</v-main>
@@ -8,12 +7,8 @@
 </template>
 
 <script>
-import VFormProduct from "@/components/VFormProduct";
 export default {
-	name: "FormProduct",
-	components: {
-		VFormProduct,
-	},
+	name: "App",
 };
 </script>
 

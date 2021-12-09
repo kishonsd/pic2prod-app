@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-import Kishonsd from '../views/Kishonsd'
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -10,11 +10,6 @@ const routes = [
     name: 'Home',
     component: Home
   },
-  {
-    path: '/kishonsd',
-    name: 'Kishonsd',
-    component: Kishonsd
-  }
 ]
 
 const router = new VueRouter({
