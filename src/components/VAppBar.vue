@@ -8,6 +8,7 @@
 				<v-spacer></v-spacer>
 				<v-btn text>Guide</v-btn>
 				<v-btn text>Dashboard</v-btn>
+				<v-btn text>Sign Up</v-btn>
 			</v-app-bar>
 		</v-container>
 	</v-sheet>

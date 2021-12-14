@@ -12,7 +12,6 @@
 
 <script>
 import VAppBar from "@/components/VAppBar";
-
 export default {
 	name: "App",
 	components: {
