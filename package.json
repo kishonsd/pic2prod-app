@@ -9,6 +9,7 @@
 		"deploy": "npm run build && firebase deploy --only hosting"
 	},
 	"dependencies": {
+		"@vue/cli": "^4.5.15",
 		"core-js": "^3.6.5",
 		"firebase": "^9.6.0",
 		"vue": "^2.6.11",

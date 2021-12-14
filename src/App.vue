@@ -2,7 +2,10 @@
 	<v-app>
 		<VAppBar />
 		<v-main>
-			<router-view></router-view>
+			<router-view>
+			<router-link to="/register">Sign Up</router-link>
+            <router-link to="/signin">Login</router-link>
+			</router-view>
 		</v-main>
 	</v-app>
 </template>
