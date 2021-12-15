@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import { createRouter , createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
-import RegisterView from '../views/RegisterView.vue'
-import SignIn from '../views/SignIn.vue'
+import RegisterView from '../components/RegisterView.vue'
 
 Vue.use(VueRouter)
 
@@ -12,24 +12,17 @@ const routes = [
     name: 'Home',
     component: Home
   },
-  {
 
-   path:'/registerview',
-   name:'RegisterView',
-   component: RegisterView
-  }, 
+{
+    path:'/registerview',
+    name: 'register',
+    component: RegisterView
 
-  {
-   path:'/signin',
-   name: 'SignIn',
-   component:SignIn
-
-  }
-
+}
 ]
 
-const router = new VueRouter({
-  history: createWebHistory(process.env.BASE_URL),
+const router = new createRouter({
+  history: createWebHistory (process.env.BASE_URL),
   routes
 })
 
