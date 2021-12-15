@@ -1,5 +1,4 @@
 <template>
- <v-btn color="primary" @click="handleSignup"> 
-    Sign Up
+ <v-btn color="primary" to= "/register"> Sign Up
 </v-btn>
 </template>

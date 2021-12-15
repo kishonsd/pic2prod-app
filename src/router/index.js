@@ -1,8 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import { createRouter , createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
-import RegisterView from '../components/RegisterView.vue'
+import Register from '../views/Register.vue'
 
 Vue.use(VueRouter)
 
@@ -13,16 +12,17 @@ const routes = [
     component: Home
   },
 
-{
-    path:'/registerview',
+  {
+    path: '/register',
     name: 'register',
-    component: RegisterView
+    component: Register
 
-}
+  }
 ]
 
-const router = new createRouter({
-  history: createWebHistory (process.env.BASE_URL),
+const router = new VueRouter({
+  mode: 'history',
+  base: process.env.BASE_URL,
   routes
 })
 
