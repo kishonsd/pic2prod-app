@@ -2,7 +2,7 @@
   <v-container>
     <v-layout row>
       <v-flex xs12 sm6 offset-sm3>
-        <v-card>
+        <v-card elevation-50>
           <v-card-text>
             <v-container>
               <form @submit.prevent="onSignup">
@@ -14,7 +14,10 @@
                       id="email"
                       v-model="email"
                       type="email"
-                      required></v-text-field>
+                      required
+                      outlined
+                      dense
+                      ></v-text-field>
                   </v-flex>
                 </v-layout>
                 <v-layout row>
@@ -25,7 +28,11 @@
                       id="password"
                       v-model="password"
                       type="password"
-                      required></v-text-field>
+                      required
+                      outlined
+                      dense
+                      
+                      ></v-text-field>
                   </v-flex>
                 </v-layout>
                 <v-layout row>
