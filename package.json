@@ -10,10 +10,15 @@
 	},
 	"dependencies": {
 		"@vue/cli": "^4.5.15",
+		"axios": "^0.24.0",
 		"core-js": "^3.6.5",
 		"firebase": "^9.6.0",
+		"lodash": "^4.17.21",
+		"moment": "^2.29.1",
+		"vee-validate": "^3.4.14",
 		"vue": "^2.6.11",
 		"vue-router": "^3.5.3",
+		"vueform": "^2.0.0",
 		"vuetify": "^2.4.0",
 		"vuex": "^3.4.0"
 	},
