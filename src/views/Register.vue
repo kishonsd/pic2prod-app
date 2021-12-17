@@ -43,7 +43,10 @@
                       id="confirmPassword"
                       v-model="confirmPassword"
                       type="password"
-                      :rules="[comparePasswords]"></v-text-field>
+                      :rules="[comparePasswords]"
+                      outlined
+                      dense
+                      ></v-text-field>
                   </v-flex>
                 </v-layout>
                 <v-layout row>
